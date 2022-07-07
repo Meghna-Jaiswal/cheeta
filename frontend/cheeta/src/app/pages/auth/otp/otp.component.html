@@ -1,0 +1,25 @@
+
+<div class="container">
+  <div class="box">
+    <div>
+    <div class="logo">Cheeta</div>
+    <div class="innerContainer">
+
+      <h1>Enter OTP</h1>
+
+      <div class="row">
+        <h4>Hi, {{email}}</h4>
+        <input type="number" max="9999" placeholder="OTP" [(ngModel)]="otp">
+      </div>
+
+      <div class="row">
+      <button (click)="submitOtp()">Log In</button>
+       </div>
+  </div>
+
+  </div>
+</div>
+<div class=" image-wrapper">
+  <img src="../../../../assets/image/otp.png" alt="image">
+</div>
+</div>

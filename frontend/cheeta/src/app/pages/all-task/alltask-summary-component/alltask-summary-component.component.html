@@ -1,0 +1,63 @@
+
+
+<div class="container">
+  <div class="head-1">
+
+    <!-- hidden div -->
+    <div class="heading" >
+      <h4 style="visibility:hidden; ">Project</h4>
+      <div class="count"  style="visibility:hidden;">
+          <div>P0</div>
+          <div>P1</div>
+          <div>P2</div>
+          <div>P3</div>
+      </div>
+    </div>
+
+
+
+
+    <div class="headings" *ngFor="let name of headings">
+      <h4 style="text-align: center;">{{name}}</h4>
+      <div class="count">
+          <div style="color: red;">P0</div>
+          <div>P1</div>
+          <div>P2</div>
+          <div>P3</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="head-1" *ngFor="let item of summary">
+
+    <div class="headings">
+      <div class="project-name">{{item.project}}</div>
+    </div>
+
+    <div class="headings">
+      <div class="count">
+          <div *ngFor="let i of item.backlog">{{i}}</div>
+      </div>
+    </div>
+
+    <div class="headings">
+      <div class="count">
+        <div *ngFor="let i of item.development">{{i}}</div>
+      </div>
+    </div>
+
+    <div class="headings">
+      <div class="count">
+        <div *ngFor="let i of item.testing">{{i}}</div>
+      </div>
+    </div>
+
+    <div class="headings">
+      <div class="count">
+        <div *ngFor="let i of item.done">{{i}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,76 @@
+pipeline {
+
+  environment {
+    dirName = "cheeta/backend/telegram/cheeta-assistant-bot"
+    projectName = "cheeta-assistant-bot"
+    pathName = "cheeta-assistant-bot"
+    projectType = "express"
+
+
+    def externalMethods = load 'jenkins/helper.groovy'
+
+    ltemp = externalMethods.loadEnv( dirName, projectName, projectType, pathName)
+  }
+  agent any
+  stages {
+
+    stage('Building image') {
+      steps{
+        dir("$dirName") {
+            script {
+              dockerImage = docker.build(imagename, buildParams )
+            }
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+        sh "docker rmi $imagename:latest"
+      }
+    }
+    stage('Apply Kubernetes files') {
+      steps{
+            script {
+                   sh "cat $dirName/kube-setup-jk.yaml | \
+                      sed 's|BRANCH-NAME-JK|$BRANCH_NAME|g; \
+                      s|PROJECT-NAME-JK|$projectName|g;  \
+                      s|NAMESPACE-JK|$namespace|g; \
+                      s|DOCKER-IMAGE-NAME|$imagename:$BUILD_NUMBER|g; ' \
+                      > $dirName/kube-setup-jk-temp.yaml"
+                    sh "cat $dirName/kube-setup-jk-temp.yaml";
+                  step([
+                        $class: 'KubernetesEngineBuilder',
+                        projectId: 'mogi-gc',
+                        clusterName: "$clusterName",
+                        location: 'asia-south1-a',
+                        manifestPattern: "$dirName/kube-setup-jk-temp.yaml",
+                        credentialsId: 'jenkins-sa',
+                        verifyDeployments: false  
+                      ])
+            }
+      }
+
+    }
+  }
+  post {
+        always {
+            echo "This will always run ${currentBuild.currentResult} ${env.JOB_NAME}"
+            script {
+              def externalMethods = load 'jenkins/helper.groovy'
+              ltemp = externalMethods.sendTelegram( "$projectName Build ${currentBuild.currentResult} for $namespace env<br> check logs https://jci.mogiio.com/job/admin-portal/job/$BRANCH_NAME/$BUILD_NUMBER/console" )
+
+            }
+        }
+    }
+}

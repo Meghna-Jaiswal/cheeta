@@ -1,0 +1,31 @@
+:host {
+  padding: 10px 0 0;
+}
+
+
+.footer {
+    height: 100%;
+    // background-color: #000000;
+    padding: 5px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #FFFFFF;
+    box-shadow: inset 0px -10px 0px -6px #F69B49;
+    border-radius: 30px;
+
+    p {
+        color: black;
+        font-size: .8rem;
+    }
+
+    i {
+      color: black;
+      font-size: 1rem;
+    }
+
+    i:not(:last-child) {
+      margin-right: 20px;
+    }
+}

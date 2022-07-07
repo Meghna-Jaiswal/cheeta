@@ -1,0 +1,24 @@
+@use '/src/variables';
+
+.card {
+    margin: 5px 0;
+    background: variables.$secondary-colour;
+    color: variables.$text-colour;
+    border-radius: 5px;
+    padding: 10px;
+}
+h5 {
+  font-family: variables.$font-readex;
+  font-size: 1rem;
+}
+
+h3 {
+  font-family: variables.$font-readex;
+  font-size: 1rem;
+  font-weight: 200;
+}
+button{
+  background-color: variables.$green;
+  color: variables.$text-colour;
+  border-radius: 5px;
+}

@@ -1,0 +1,330 @@
+@use '/src/variables';
+
+.card{
+    padding: 20px;
+    min-width: 400px;
+
+    max-height: 550px;
+    overflow-y: scroll;
+
+    border: 1px solid variables.$text-colour;
+    background-color: variables.$primary-colour;
+
+
+
+    .header {
+      text-align: end;
+    }
+
+    .rows{
+      margin: 10px 0;
+        display: flex;
+        // flex-direction: column;
+
+        label{
+            float: left;
+            padding: 10px;
+            color: variables.$accent-colour;
+            font-family: variables.$font-readex;
+        }
+
+        input{
+
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-family: variables.$font-readex;
+            color: variables.$text-colour;
+            background: variables.$secondary-colour;
+
+        }
+        input::placeholder {
+          color: variables.$accent-colour;
+          font-size: 1rem;
+          font-family: variables.$font-readex;
+        }
+
+
+        .toggle{
+            .toggleOption{
+              width: 100%;
+                padding: 2px 10px;
+                border-radius: 5px;
+                font-family: variables.$font-readex;
+                color: variables.$text-colour;
+                background-color: variables.$secondary-colour;
+
+            }
+
+            .toggleOption:not(:last-child) {
+              margin-right: 10px;
+            }
+
+            .mat-button-toggle-checked {
+              background-color: variables.$accent-colour;
+            }
+        }
+
+        textarea{
+
+          padding: 10px 10px;
+          width: 100%;
+          border: none;
+          border-radius: 5px;
+          max-width: 500px;
+          max-height: 300px;
+          min-width: 200px;
+          min-height: 50px;
+          font-family: variables.$font-readex;
+          color: variables.$text-colour;
+          background-color: variables.$secondary-colour;
+
+          }
+          textarea::placeholder {
+
+            color: variables.$accent-colour;
+            font-size: 1rem;
+            font-family: variables.$font-readex;
+          }
+        select{
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            border:none;
+            font-family: variables.$font-readex;
+            color: variables.$text-colour;
+            background-color: variables.$secondary-colour;
+        }
+
+    }
+    .checkbox{
+        text-align: end;
+        color: green;
+        background: none;
+        font-family: variables.$font-readex;
+        margin: 10px 0;
+
+    }
+    .tag{
+      max-width: 400px;
+      border-radius: 5px;
+      background-color: variables.$secondary-colour;
+        mat-chip-list {
+            background-color: variables.$secondary-colour;
+
+            mat-chip{
+                margin: 10px;
+                font-family: variables.$font-readex;
+                background-color: variables.$primary-colour;
+                color: variables.$text-colour;
+
+                button{
+                    color: variables.$text-colour;
+                    font-family: variables.$font-readex;
+                    background: none;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .button{
+      background-color: variables.$accent-colour;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+        padding:10px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .button:hover{
+        background-color: variables.$accent-colour;
+        font-family: variables.$font-readex;
+        color: variables.$text-colour;
+    }
+
+
+
+
+     /*  ---------- Comments -----------    */
+
+     .special-row {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+
+
+      label{
+          float: left;
+          padding: 10px;
+          font-family: variables.$font-readex;
+          color: variables.$accent-colour;
+      }
+
+
+      .files-area {
+        width: 100%;
+         padding: 10px;
+         border: .5px solid variables.$text-colour;
+         border-radius: 5px;
+         display: flex;
+         align-items: center;
+
+         max-width: 500px;
+          max-height: 300px;
+          min-width: 200px;
+          min-height: 50px;
+
+         .files {
+           flex: 1;
+          // height: 100px;
+          padding: 10px;
+          overflow-y: scroll;
+
+            mat-chip{
+              cursor: pointer;
+                font-family: variables.$font-readex;
+                background-color: variables.$accent-colour;
+                color: variables.$primary-colour;
+
+                button{
+                    color: variables.$text-colour;
+                    background: none;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+            }
+
+          }
+         }
+
+         button {
+          border: none;
+          outline: none;
+          padding: 5px 5px 3px;
+          background: none;
+          // border-radius: 50%;
+          font-size: 1.5rem;
+          font-family: variables.$font-readex;
+          color: variables.$text-colour;
+          border: 2px solid variables.$text-colour;
+          // background-color: variables.$secondary-colour;
+          cursor: pointer;
+         }
+      }
+
+
+      .comment-area {
+         width: 100%;
+         height: 200px;
+         padding: 10px;
+         border: .5px solid variables.$text-colour;
+         border-radius: 5px 5px 0 0;
+         overflow-y: scroll;
+
+         .comment {
+           margin: 0 0 25px;
+           width: 100%;
+           padding: 10px;
+           color: variables.$text-colour;
+           font-family: variables.$font-readex;
+           border: .5px solid variables.$text-colour;
+           border-radius: 5px;
+           position: relative;
+
+           .user-name {
+            font-size: .7rem;
+            color: variables.$accent-colour;
+            font-family: variables.$font-readex;
+           }
+
+           .msg {
+            font-size: 1rem;
+            font-family: variables.$font-readex;
+           }
+
+           .date-time {
+            font-size: .5rem;
+            font-family: variables.$font-readex;
+            position: absolute;
+            transform: translate(0, 150%);
+           }
+         }
+       }
+
+       .comment-box {
+        width: 100%;
+        display: flex;
+        border: .5px solid variables.$text-colour;
+        font-family: variables.$font-readex;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+
+        input {
+          flex: 1;
+          padding: 10px;
+          color: variables.$text-colour;
+          font-family: variables.$font-readex;
+          background-color: variables.$primary-colour;
+          border: none;
+          outline: none;
+        }
+
+        .send {
+          border: none;
+          outline: none;
+          padding: 10px 15px;
+          color: variables.$primary-colour;
+          font-family: variables.$font-readex;
+          background-color: variables.$text-colour;
+        }
+       }
+
+     }
+
+
+}
+mat-icon{
+  color: variables.$text-colour;
+}
+
+::ng-deep .mat-tooltip {
+  font-weight: 200px;
+  white-space: pre-line; // Allow line break
+  font-size: 15px;
+  color: variables.$secondary-colour !important;
+  background-color: variables.$text-colour;
+  font-family: variables.$font-readex;
+  border: none;
+  max-width: unset !important;
+}
+
+.error{
+    color: red;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: variables.$scrollbar;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: variables.$scrollbar-hover
+  }

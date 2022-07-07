@@ -1,0 +1,168 @@
+@use "/src/variables";
+
+.container {
+  cursor: pointer;
+}
+
+.toolbar-container {
+  overflow-x: scroll;
+}
+.toolbar {
+  min-width: 1100px;
+  background: variables.$secondary-colour;
+  font-family: variables.$font-readex;
+  border-radius: 5px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .filter {
+    width: 100%;
+    max-width: 250px;
+    font-family: variables.$font-readex;
+
+    mat-select,
+    select,
+    option,
+    optgroup {
+      width: 100%;
+      background: variables.$primary-colour;
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      border-radius: 5px;
+      padding: 8px 20px;
+      outline: none;
+      border: none;
+    }
+  }
+
+  .apply {
+    width: 100%;
+    max-width: 250px;
+    padding: 0 10px;
+    cursor: pointer;
+
+    button {
+      width: 100%;
+      border-radius: 30px;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 25px;
+      font-family: variables.$font-readex;
+      background-color: variables.$primary-colour;
+      color: variables.$accent-colour;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 100ms ease;
+    }
+
+    button:hover,
+    button:focus {
+      font-family: variables.$font-readex;
+      color: variables.$text-colour;
+      background-color: variables.$accent-colour;
+    }
+  }
+}
+// .no-scrollbar::-webkit-scrollbar {
+//   display: none;
+// }
+
+// .no-scrollbar {
+//   -ms-overflow-style: none;
+//   scrollbar-width: none;
+// }
+
+.table {
+  overflow-x: scroll;
+  margin: 10px 0 0;
+  width: 100%;
+  height: 620px;
+  background: transparent;
+  border-radius: 5px;
+  display: flex;
+  justify-content: start;
+
+  .col {
+    margin: 0 4px;
+    height: 100%;
+    max-height: 620px;
+    width: 100%;
+    min-width: 350px;
+    max-width: 500px;
+    background: variables.$secondary-colour;
+    border-radius: 5px;
+    padding: 10px 15px;
+
+    h1 {
+      margin: 0 0 15px;
+      color: variables.$accent-colour;
+      font-family: variables.$font-readex;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  }
+}
+h5 {
+  color: variables.$text-colour;
+  font-family: variables.$font-readex;
+  margin: 5px;
+}
+
+.example-list {
+  height: 565px;
+  overflow-y: scroll;
+}
+.option {
+  background-color: variables.$secondary-colour;
+  color: variables.$text-colour;
+  font-family: variables.$font-readex;
+  overflow-y: scroll;
+}
+::ng-deep .mat-optgroup-label {
+  background-color: variables.$secondary-colour;
+  color: variables.$accent-colour;
+}
+
+::ng-deep .mat-select-value {
+  color: variables.$text-colour;
+}
+
+::ng-deep .mat-pseudo-checkbox {
+  color: white;
+}
+:hover {
+  color: black;
+}
+
+::-webkit-scrollbar {
+  height: 4px; /* height of horizontal scrollbar ← You're missing this */
+  width: 4px; /* width of vertical scrollbar */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2.5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: variables.$scrollbar;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: variables.$scrollbar-hover;
+}
+::ng-deep .mat-select-arrow {
+
+  color: variables.$text-colour;
+}
+

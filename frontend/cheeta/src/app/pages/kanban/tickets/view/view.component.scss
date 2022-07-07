@@ -1,0 +1,248 @@
+@use '/src/variables';
+
+.main{
+    background-color: variables.$primary-colour;
+    padding: 10px 20px;
+    width: 100%;
+    min-width: 400px;
+    max-width: 700px;
+    max-height: 500px;
+    overflow-y: scroll;
+
+    .para{
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    label{
+      color: variables.$accent-colour;
+      font-family: variables.$font-readex;
+    }
+
+    .accentPara{
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      padding: 4px;
+      border-radius: 5px;
+      width: 80px;
+      text-align: center;
+      background-color: variables.$accent-colour;
+    }
+
+    .content {
+      
+      display: flex;
+      flex-direction: column;
+      font-family: variables.$font-readex;
+
+           p{
+             border-radius: 5px;
+             margin: 4px;
+             padding: 10px;
+             width: 100%;
+             background-color: variables.$secondary-colour;
+               color: variables.$text-colour;
+               font-family: variables.$font-readex;
+           }
+        }
+
+
+}
+
+.projectName{
+  display: flex;
+
+  div{
+    border-radius: 5px;
+    margin: 4px;
+    padding: 10px;
+    background-color: variables.$secondary-colour;
+    color: variables.$text-colour;
+    font-family: variables.$font-readex;
+  }
+}
+
+.tab{
+  display: flex;
+  justify-content: space-between;
+
+}
+.chips{
+    display: flex;
+    
+    div{
+      background-color: variables.$secondary-colour;
+      color: variables.$text-colour;
+      padding: 10px;
+      margin: 4px;
+      border-radius: 5px;
+    }
+    
+
+  }
+
+
+  .comment-area {
+    max-height: 200px;
+    max-width: 350px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    overflow-y: scroll;
+    background-color: variables.$secondary-colour;
+
+    .comment {
+      margin: 0 0 25px;
+      width: 100%;
+      padding: 10px;
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      border: .5px solid variables.$text-colour;
+      border-radius: 5px;
+      position: relative;
+
+      .user-name {
+       font-size: .7rem;
+       color: variables.$accent-colour;
+       font-family: variables.$font-readex;
+      }
+
+      .msg {
+       font-size: 1rem;
+       font-family: variables.$font-readex;
+       word-wrap: break-word;
+      }
+
+      .date-time {
+       font-size: .5rem;
+       font-family: variables.$font-readex;
+       position: absolute;
+       transform: translate(0, 150%);
+      }
+    }
+  }
+
+  .comment-box {
+   width: 100%;
+   display: flex;
+   background-color: variables.$secondary-colour;
+
+   font-family: variables.$font-readex;
+   border-top: none;
+   padding: 5px;
+  
+   input {
+     flex: 1;
+     color: variables.$text-colour;
+     font-family: variables.$font-readex;
+     background-color: variables.$primary-colour;
+     border: none;
+     outline: none;
+     padding: 10px;
+     border-radius: 5px;
+     margin-right: 4px;
+   }
+
+   .send {
+     border: none;
+     outline: none;
+     color: variables.$text-colour;
+     font-family: variables.$font-readex;
+     border-radius: 5px;
+     background-color: variables.$primary-colour;
+   }
+  }
+
+
+
+.membersList{
+
+  .member{
+    background-color: variables.$secondary-colour;
+    font-family: variables.$font-readex;
+    padding: 10px;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  div{
+    background-color: variables.$primary-colour;
+    font-family: variables.$font-readex;
+    color: variables.$text-colour;
+    border-radius: 5px;
+    margin: 4px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+
+    img{
+      border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        
+    }
+  }
+
+}
+mat-icon{
+    color: variables.$text-colour;
+}
+footer{
+  background-color: variables.$primary-colour;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  
+  
+  
+    button {
+      border: none;
+      border-radius: 5px;
+      margin: 4px;
+      padding: 5px;
+      
+      cursor: pointer;
+      color: variables.$text-colour;
+      font-size: .9rem;
+      font-family: variables.$font-readex;
+      background-color: variables.$secondary-colour;
+    }
+
+    button:hover {
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      background-color: variables.$accent-colour;
+    }
+}
+
+
+
+
+
+
+::-webkit-scrollbar {
+  height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+  width: 4px;               /* width of vertical scrollbar */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: variables.$scrollbar;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: variables.$scrollbar-hover;
+}

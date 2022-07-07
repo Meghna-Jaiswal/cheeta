@@ -1,0 +1,76 @@
+
+<div class="container">
+
+    <div class="header">
+        <h2> Create OKR</h2>
+    </div>
+    <div class="tab">
+
+        <label>Objective</label>
+
+        <div>
+            <input type="text" placeholder="Objective" [(ngModel)]="okr.objective" />
+            <div>
+                <span *ngIf="!objectiveValid" style="color: red;">Field Required</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab">
+
+        <label class="label">Actions</label>
+        <div class="tags">
+            <mat-chip-list #chipList>
+            <mat-chip *ngFor="let action of okr.actions" (removed)="removeAction(action)">
+                {{action}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+
+    </div>
+
+    <div class="tab">
+
+        <div>
+            <input type="text" placeholder="Actions" [(ngModel)]="action" (keydown.enter)="addAction($event)"/>
+            <mat-icon (click)="addAction($event)">add</mat-icon>
+            <div>
+                <span *ngIf="!actionValid" style="color: red;">Field Can't be Empty</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tab">
+        <label class="label">Results</label>
+
+        <div class="tags">
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let result of okr.results" (removed)="removeResult(result)">
+                {{result}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+    </div>
+
+    <div class="tab">
+
+        <div>
+            <input type="text" placeholder="Results" [(ngModel)]="result" (keydown.enter)="addResult($event)" />
+            <mat-icon (click)="addResult($event)">add</mat-icon>
+            <div>
+                <span *ngIf="!resultValid" style="color: red;">Field Can't be Empty</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submitBtn">
+        <button (click)="onSubmit()" [disabled]="isClicked">Submit</button>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="loader-overlay" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+<div class="container" *ngIf="!isLoading">
+  <div class="toolbar-container no-scrollbar">
+  <div class="toolbar">
+
+    <div class="filter">
+      <h5>Project</h5>
+      <mat-select  id="role" [(ngModel)]="projectName" multiple (selectionChange)="onApply()">
+        <mat-option  class="option" *ngFor="let projectName of projectNameArr" [value]="projectName.id">{{projectName.name}}</mat-option>
+      </mat-select>
+    </div>
+
+    <div class="filter">
+      <h5>Members</h5>
+
+      <mat-select id="role" placeholder="Role" [(ngModel)]="members" multiple (selectionChange)="onApply()">
+        <mat-optgroup label="Software-Developer" *ngIf="membersArr.developers.length">
+          <mat-option class="option" *ngFor="let member of membersArr.developers" [value]="member._id">{{member.name}}</mat-option>
+
+        </mat-optgroup>
+        <mat-optgroup label="QA-Analyst" *ngIf="membersArr.testers.length">
+          <mat-option class="option" *ngFor="let member of membersArr.testers" [value]="member._id">{{member.name}}</mat-option>
+
+        </mat-optgroup>
+        <mat-optgroup label="Others" *ngIf="membersArr.others.length">
+          <mat-option class="option" *ngFor="let member of membersArr.others" [value]="member._id">{{member.name}}</mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </div>
+
+
+    <div class="filter" placeholder="Select Priority">
+      <h5>Priority</h5>
+      <mat-select  [(ngModel)]="priority" multiple (selectionChange)="onApply()">
+        <mat-option class="option" value="P0">P0</mat-option>
+        <mat-option class="option" value="P1" >P1</mat-option>
+        <mat-option class="option" value="P2" >P2</mat-option>
+        <mat-option class="option" value="P3">P3</mat-option>
+      </mat-select>
+    </div>
+
+    <div class="filter" >
+      <h5>Stages</h5>
+      <mat-select id="stages" [(ngModel)]="state" multiple (selectionChange)="showHideColumns()">
+        <mat-option class="option" value="backlog">Backlog</mat-option>
+        <mat-option class="option" value="development">Development</mat-option>
+        <mat-option class="option" value="devdone">Dev Done</mat-option>
+        <mat-option class="option" value="testing">Testing</mat-option>
+        <mat-option class="option" value="done">Done</mat-option>
+        <mat-option class="option" value="deployed">Deployed</mat-option>
+        <mat-option class="option" value="delivered">Delivered</mat-option>
+      </mat-select>
+    </div>
+
+  </div>
+</div>
+
+
+  <div cdkDropListGroup>
+    <div class="table no-scrollbar" >
+      <div class="col" *ngIf="showState.backlog">
+        <h1>Backlog ( {{this.backlog.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="backlog" class="example-list" id="backlog"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of backlog" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col" *ngIf="showState.development">
+        <h1>Development ( {{this.development.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="development" class="example-list" id="development"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of development" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" *ngIf="showState.devdone">
+        <h1>Dev Done ( {{this.devdone.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="devdone" class="example-list" id="devdone"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of devdone" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" *ngIf="showState.testing">
+        <h1>Testing ( {{this.testing.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="testing" class="example-list" id="testing"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of testing" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" *ngIf="showState.done">
+        <h1>Done ( {{this.done.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="done" class="example-list" id="done" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of done" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" *ngIf="showState.deployed">
+        <h1>Deployed ( {{this.deployed.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="deployed" class="example-list" id="deployed"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of deployed" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" *ngIf="showState.delivered">
+        <h1>Delivered ( {{this.delivered.length}} )</h1>
+        <div cdkDropList [cdkDropListData]="delivered" class="example-list" id="delivered"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of delivered" cdkDrag>
+            <app-tickets [ticketInfo]="item"></app-tickets>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

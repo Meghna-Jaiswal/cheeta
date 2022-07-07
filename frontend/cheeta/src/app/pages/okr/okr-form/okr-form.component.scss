@@ -1,0 +1,80 @@
+@use '/src/variables';
+
+.container{
+    background-color: variables.$primary-colour;
+    padding: 10px;
+    border: 2px solid variables.$text-colour;
+    min-height: 300px;
+    min-width: 300px;
+
+    .header{
+        display: flex;
+        color: variables.$accent-colour;
+        justify-content: center;
+        padding: 10px;
+    }
+    h2{
+      font-family: variables.$font-readex;
+    }
+    .tab{
+
+        .tags{
+            max-width: 300px;
+            min-width: 300px;
+        }
+       ::ng-deep.mat-chip-list-wrapper {
+          margin: 5px;
+        }
+
+        label{
+            color: variables.$text-colour;
+            font-family: variables.$font-readex;
+            padding: 10px;
+            margin: 4px;
+            margin-left: 11px;
+        }
+        div{
+            input{
+                border-radius: 10px;
+                margin: 10px;
+                padding: 10px;
+                min-width: 300px;
+                max-width: 500px;
+                font-size: .9rem;
+                font-weight: 600;
+                font-family: variables.$font-readex;
+                background-color: variables.$secondary-colour;
+                color: variables.$text-colour;
+                border: none;
+            }
+            mat-icon{
+                color: variables.$text-colour;
+            }
+            mat-chip{
+              background-color: variables.$secondary-colour;
+              color: variables.$text-colour;
+              font-family: variables.$font-readex;
+            }
+            div{
+                margin-left: 10px;
+            }
+        }
+    }
+    .submitBtn{
+        display: flex;
+        justify-content: center;
+
+        button{
+            text-align: center;
+            color: variables.$text-colour;
+            background-color: variables.$accent-colour;
+            border-radius: 5px;
+            padding: 2px;
+            margin: 4px;
+            border: none;
+        }
+      }
+
+
+
+}

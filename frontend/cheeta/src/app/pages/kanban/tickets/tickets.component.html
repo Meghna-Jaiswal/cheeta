@@ -1,0 +1,57 @@
+<div class="card" (dblclick)="openTicketDetails()">
+<header >
+  <h3 *ngIf="ticketInfo.tags.length>0 && ticketInfo.priority === 'P0'" style="border: 2px solid red;" matTooltip="{{ticketInfo.hrId}}">
+    {{ticketInfo.tags[0]?.split(':').pop() | titlecase }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length>0 && ticketInfo.priority === 'P1'" style="border: 2px solid rgb(255, 68, 0);" matTooltip="{{ticketInfo.hrId}}">
+    {{ticketInfo.tags[0]?.split(':').pop() | titlecase }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length>0 && ticketInfo.priority === 'P2'" style="border: 2px solid rgb(255, 136, 0);" matTooltip="{{ticketInfo.hrId}}">
+    {{ticketInfo.tags[0]?.split(':').pop() | titlecase }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length>0 && ticketInfo.priority === 'P3'" style="border: 2px solid rgb(242, 255, 0);" matTooltip="{{ticketInfo.hrId}}">
+    {{ticketInfo.tags[0]?.split(':').pop() | titlecase }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length>0 && ticketInfo.priority === 'P4'" style="border: 2px solid rgb(149, 255, 0);" matTooltip="{{ticketInfo.hrId}}">
+    {{ticketInfo.tags[0]?.split(':').pop() | titlecase }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length>0 && ticketInfo.priority === 'P5'" style="border: 2px solid green;" matTooltip="{{ticketInfo.hrId}}">
+    {{ticketInfo.tags[0]?.split(':').pop() | titlecase }}
+  </h3>
+
+  <h3 *ngIf="ticketInfo.tags.length<=0 && ticketInfo.priority === 'P0'" style="border: 2px solid red;" >
+    {{ticketInfo.hrId }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length<=0 && ticketInfo.priority === 'P1'" style="border: 2px solid rgb(255, 68, 0);" >
+    {{ticketInfo.hrId }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length<=0 && ticketInfo.priority === 'P2'" style="border: 2px solid rgb(255, 136, 0);">
+    {{ticketInfo.hrId }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length<=0 && ticketInfo.priority === 'P3'" style="border: 2px solid rgb(242, 255, 0);" >
+    {{ticketInfo.hrId }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length<=0 && ticketInfo.priority === 'P4'" style="border: 2px solid rgb(149, 255, 0);" >
+    {{ticketInfo.hrId }}
+  </h3>
+  <h3 *ngIf="ticketInfo.tags.length<=0 && ticketInfo.priority === 'P5'" style="border: 2px solid green;" >
+    {{ticketInfo.hrId }}
+  </h3>
+
+
+  <h3 style="border: 2px solid white;" >
+    {{'C'+ticketInfo.createdDaysAgo }}
+  </h3>
+  <h3 style="border: 2px solid white;" >
+    {{'U'+ticketInfo.updatedDaysAgo }}
+  </h3>
+
+    <div class="profiles" >
+      <img *ngFor="let member of ticketInfo.members" [src]="member.profilePic? member.profilePic : 'assets/image/background.jpg'" matTooltip="{{member.email}}">
+    </div>
+</header>
+
+
+  <div><h6>{{ticketInfo.title}}</h6></div>
+
+</div>

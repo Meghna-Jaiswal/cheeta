@@ -1,0 +1,82 @@
+@use "/src/variables";
+
+.main {
+  min-width: 400px;
+  max-width: 500px;
+  height: 90vh;
+  background-color: variables.$primary-colour;
+  padding-bottom: 1%;
+  overflow-y: scroll;
+}
+#crossSign {
+  display: flex;
+  justify-content: flex-end;
+}
+
+// border: 2px solid blue;
+.logs {
+  padding-top: 8%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5%;
+}
+h2 {
+  font-family: variables.$font-readex;
+  font-weight: bold;
+  color: variables.$text-colour;
+  font-size: 3rem;
+}
+
+.logsList {
+  div {
+    position: relative;
+    padding: 2%;
+    color: variables.$text-colour;
+    font-family: variables.$font-readex;
+    align-items: center;
+  }
+  .icon {
+    position: absolute;
+    display: flex;
+    right: 0%;
+    height: 100%;
+    margin-right: 2%;
+    align-items: center;
+  }
+}
+.logsData {
+  margin: 2% 5% 2%;
+  margin-bottom: 2%;
+  background-color: variables.$secondary-colour;
+  display: flex;
+  border-radius: 10px;
+  font-size: small;
+}
+.user-image {
+  border-radius: 4rem;
+  margin-left: 2%;
+  margin-top: 1%;
+  height: 30px;
+  width: 30px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: variables.$scrollbar;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: variables.$scrollbar-hover;
+}

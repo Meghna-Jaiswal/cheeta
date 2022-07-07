@@ -1,0 +1,61 @@
+<div class="loader-overlay" *ngIf="isLoading">
+  <div class="loader" ></div>
+</div>
+
+<div class="main" *ngIf="!isLoading">
+
+  <div class="row">
+    <div style="width: 100%; margin-right: 1.7%;">
+      Hello, {{userName | titlecase}}
+    </div>
+    <div style="min-width: 300px">
+      {{days[day]}}, {{date | date: "dd/MM/yyyy"}}
+    </div>
+  </div>
+
+    <div class="row-1">
+
+
+        <div class="tabs task">
+
+          <h3>Big Tasks</h3>
+          <div>
+            <app-task *ngFor="let t of bigTask" [taskSummary]="t"></app-task>
+          </div>
+        </div>
+
+        <div class="tabs task">
+          <h3>Small Tasks</h3>
+          <div>
+            <app-task *ngFor="let t of smallTask" [taskSummary]="t"></app-task>
+          </div>
+        </div>
+
+        <div class="tabs score">
+          <h3>Personal Score</h3>
+          <div class="little-tab overall-score">
+            <h6>Overall Score</h6>
+            <p>{{score}}</p>
+          </div>
+          <div class="little-tab top-performers">
+            <h6>Top Performers</h6>
+            <div *ngIf="topPerformers.length">
+              <h2>{{topPerformers[0].name | titlecase }} {{topPerformers[0].score}}</h2>
+              <h3>{{topPerformers[1].name | titlecase }} {{topPerformers[1].score}}</h3>
+              <h4>{{topPerformers[2].name | titlecase }} {{topPerformers[2].score}}</h4>
+              <h5>{{topPerformers[3].name | titlecase }} {{topPerformers[3].score}}</h5>
+              <h6>{{topPerformers[4].name | titlecase }} {{topPerformers[4].score}}</h6>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row-2">
+        <app-summary [ticketSummary]="ticketSummary"></app-summary>
+    </div>
+</div>
+
+

@@ -1,0 +1,589 @@
+<div class="loader-overlay" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
+<div class="card" *ngIf="!isLoading">
+  <div class="display">
+    <div class="title">
+      <input
+        class="titleInput"
+        type="text"
+        placeholder="Title"
+        *ngIf="!createTicket.priority"
+        [(ngModel)]="createTicket.title "
+        maxlength="60"
+      />
+      <input
+        class="titleInput"
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="createTicket.title "
+        *ngIf="createTicket.priority=== 'P0'"
+        style="border: 2px solid red"
+      />
+      <input
+        class="titleInput"
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="createTicket.title "
+        *ngIf="createTicket.priority=== 'P1'"
+        style="border: 2px solid rgb(255, 140, 0)"
+      />
+      <input
+        class="titleInput"
+        title
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="createTicket.title "
+        *ngIf="createTicket.priority=== 'P2'"
+        style="border: 2px solid rgb(255, 204, 0)"
+      />
+      <input
+        class="titleInput"
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="createTicket.title "
+        *ngIf="createTicket.priority=== 'P3'"
+        style="border: 2px solid rgb(180, 189, 0)"
+      />
+
+      <input
+        class="titleInput"
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="createTicket.title "
+        *ngIf="createTicket.priority=== 'P4'"
+        style="border: 2px solid rgb(149, 255, 0)"
+      />
+
+      <input
+        class="titleInput"
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="createTicket.title "
+        *ngIf="createTicket.priority=== 'P5'"
+        style="border: 2px solid green"
+      />
+      <img
+        class="creatorPic"
+        *ngIf="createTicket.user"
+        [src]="createTicket.user.profilePic? createTicket.user.profilePic : 'assets/image/background.jpg'"
+        matTooltip="{{createTicket.user.name}}"
+      />
+    </div>
+
+    <div class="info">
+      <div class="tags" *ngIf="createTicket.tags.length>0">
+        <label class="label">Tags</label>
+        <div class="tag-field">
+          <mat-chip-list #chipList>
+            <mat-chip
+              *ngFor="let tag of createTicket.tags"
+              (removed)="removeTags(tag)"
+            >
+              {{tag}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+
+      <div class="priority" *ngIf="createTicket.priority">
+        <label class="label">Priority</label>
+        <div>
+          <mat-chip> {{createTicket.priority}} </mat-chip>
+        </div>
+      </div>
+
+      <div class="task-type" *ngIf="createTicket.type">
+        <label class="label">Type</label>
+        <div>
+          <mat-chip> {{createTicket.type}} </mat-chip>
+        </div>
+      </div>
+    </div>
+
+    <div class="members" *ngIf="createTicket.members.length>0">
+      <div style="display: flex">
+        <div>
+          <mat-icon>tag_faces</mat-icon>
+        </div>
+
+        <div style="margin-top: -1.5%; justify-content: center">
+          <label class="label">Members</label>
+        </div>
+      </div>
+
+      <!-- <div class="profiles" >
+          <img *ngFor="let member of createTicket.members" [src]="member.profilePic? member.profilePic : 'assets/image/background.jpg'" matTooltip="{{member.email}}">
+        </div> -->
+      <div>
+        <mat-chip-list #chipList>
+          <mat-chip
+            *ngFor="let i of createTicket.members"
+            (removed)="remove(i)"
+          >
+            <img
+              [src]="i.profilePic? i.profilePic : 'assets/image/background.jpg'"
+            />
+            {{i.name}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+
+    <div class="descriptions">
+      <!-- <mat-icon>description</mat-icon> -->
+      <div style="display: flex">
+        <div>
+          <mat-icon>reorder</mat-icon>
+        </div>
+        <div style="margin-top: -1.5%">
+          <label class="label">Description</label>
+        </div>
+      </div>
+
+      <div>
+        <textarea
+          rows="5"
+          placeholder="Description"
+          [(ngModel)]="createTicket.description"
+        >
+        </textarea>
+      </div>
+    </div>
+
+    <div class="attachments" *ngIf="createTicket.files.length>0">
+      <div style="display: flex">
+        <div>
+          <mat-icon>star_border</mat-icon>
+        </div>
+        <div style="margin-top: -1.5%">
+          <label class="label">Attachements</label>
+        </div>
+      </div>
+
+      <div class="files">
+        <mat-chip-list #chipList>
+          <mat-chip
+            class="chipDesign"
+            *ngFor="let f of createTicket.files"
+            [ngStyle]="{'background-image': 'url(' + imageUrl(f) + ')'}"
+            (click)="goToLink(f)"
+            (removed)="removeFiles(f)"
+          >
+            <button id="matButton" matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+
+    <div class="comments">
+      <div style="display: flex">
+        <mat-icon> comment</mat-icon>
+        <div style="margin-top: -1.5%">
+          <label class="label">Comments</label>
+        </div>
+      </div>
+
+      <div class="comment-box">
+        <!-- <input type="text" #comment (keydown.enter)="addComment(comment)" > -->
+        <img
+          class="image-wrapper"
+          [src]="profilePic||'../../../assets/image/background-2.jpg'"
+          alt="Avatar"
+        />
+        <div>
+          <input
+            placeholder="Write your Comment"
+            id="typeComment"
+            type="text"
+            [(ngModel)]="cmnt"
+            #comment
+            (keydown.enter)="addComment(comment)"
+          />
+        </div>
+      </div>
+
+      <div class="comment-area" *ngIf="createTicket.comments">
+        <div class="comment_details" *ngFor="let i of createTicket.comments">
+          <div>
+            <img
+              class="user-image"
+              [src]="i.profilePic||'../../../assets/image/background-2.jpg'"
+              alt="Avatar"
+            />
+          </div>
+
+          <div class="comment">
+            <div class="user-name">{{i.user}}</div>
+            <div class="msg">{{i.msg}}</div>
+            <div class="date-time">
+              {{i.dateTime | date: "hh:mm:ss- EEEE- dd/MM/YYYY"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="ticketState">{{createTicket.state|titlecase}}</div>
+
+    <div>
+      <label
+        *ngIf="createTicket.expectedTime!='' && createTicket.expectedTime!=null "
+        class="dueDateLable"
+        >Due Date
+      </label>
+
+      <!-- <h4 *ngIf="createTicket.expectedTime && createTicket.priority=== 'P0'" style=" color:red">{{createTicket.expectedTime | date: "EEEE- MM/dd"}}</h4> -->
+      <h4
+        *ngIf="createTicket.expectedTime!='' && duedateCrossed"
+        style="color: orange"
+      >
+        {{createTicket.expectedTime | date: "EEEE- MM/dd"}}
+      </h4>
+      <h4 *ngIf="createTicket.expectedTime!='' && !duedateCrossed">
+        {{createTicket.expectedTime | date: "EEEE- MM/dd"}}
+      </h4>
+      <!-- <h4 *ngIf="createTicket.expectedTime && createTicket.priority=== 'P2'" style=" color:yellow">{{createTicket.expectedTime | date: "EEEE- MM/dd"}}</h4> -->
+      <!-- <h4 *ngIf="createTicket.expectedTime && createTicket.priority=== 'P3'" style=" color:white">{{createTicket.expectedTime | date: "EEEE- MM/dd"}}</h4> -->
+    </div>
+
+    <div class="ctrl">
+      <mat-accordion>
+        <h5>Add +</h5>
+        <mat-expansion-panel disabled>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="priority">
+              <mat-button-toggle-group
+                class="toggle primary its_here"
+                [(ngModel)]="createTicket.priority"
+              >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="P0"
+                  style="background-color: red"
+                  >P0</mat-button-toggle
+                >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="P1"
+                  style="background-color: rgb(255, 140, 0)"
+                  >P1</mat-button-toggle
+                >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="P2"
+                  style="background-color: rgb(255, 204, 0)"
+                  >P2</mat-button-toggle
+                >
+              </mat-button-toggle-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <mat-expansion-panel disabled>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="priority">
+              <mat-button-toggle-group
+                class="toggle primary its_here"
+                [(ngModel)]="createTicket.priority"
+              >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="P3"
+                  style="background-color: rgb(180, 189, 0)"
+                  >P3</mat-button-toggle
+                >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="P4"
+                  style="background-color: rgb(149, 255, 0)"
+                  >P4</mat-button-toggle
+                >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="P5"
+                  style="background-color: green"
+                  >P5</mat-button-toggle
+                >
+              </mat-button-toggle-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel disabled>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-button-toggle-group
+                class="toggle"
+                name="fontStyle"
+                [(ngModel)]="createTicket.type"
+                aria-label="Font Style"
+              >
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="small"
+                  style="background-color: red; padding: 2px; width: 80%"
+                  >Small
+                </mat-button-toggle>
+
+                <mat-button-toggle
+                  class="toggleOption"
+                  value="big"
+                  style="background-color: blue; padding: 2px; width: 80%"
+                  >Big
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel disabled>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat-c">
+              <input
+                #s
+                placeholder="Tags"
+                list="projectNameArr"
+                type="text"
+                [(ngModel)]="tags"
+                (keyup.enter)="addTags($event)"
+                matTooltip="Should be entered in following formats:
+            P:project_name,
+            B:bug_of_Project,
+            F:feature,
+            ex: P:maya, B:maya"
+                (change)="addTags($event)"
+                (keyup.enter)="s.blur()"
+              />
+              <datalist id="projectNameArr" *ngIf="projectNameArr.length">
+                <option *ngFor="let a of projectNameArr" [value]="a"></option>
+              </datalist>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat"> Members </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="tag">
+            <div>
+              <mat-chip-list #chipList>
+                <mat-chip
+                  *ngFor="let i of createTicket.members"
+                  (removed)="remove(i)"
+                >
+                  <img
+                    [src]="i.profilePic? i.profilePic : 'assets/image/background.jpg'"
+                  />
+                  {{i.name}}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+            <!-- <mat-chip-list #chipList>
+              <mat-chip *ngFor="let i of createTicket.members" (removed)="remove(i)">
+                {{i.name}}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+            </mat-chip-list> -->
+            <select
+              id="mem"
+              placeholder="Role"
+              [(ngModel)]="member"
+              (change)="addMember($event)"
+            >
+              <optgroup
+                label="Software-Developer"
+                *ngIf="membersArr.developers.length"
+              >
+                <option
+                  *ngFor="let member of membersArr.developers"
+                  [value]="member._id"
+                >
+                  {{member.name}}
+                </option>
+              </optgroup>
+              <optgroup label="QA-Analyst" *ngIf="membersArr.testers.length">
+                <option
+                  *ngFor="let member of membersArr.testers"
+                  [value]="member._id"
+                >
+                  {{member.name}}
+                </option>
+              </optgroup>
+              <optgroup label="Others" *ngIf="membersArr.others.length">
+                <option
+                  *ngFor="let member of membersArr.others"
+                  [value]="member._id"
+                >
+                  {{member.name}}
+                </option>
+                <option value="">member</option>
+              </optgroup>
+            </select>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat"> Files </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="files-area">
+            <div>
+              <button (click)="selectFile.click()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <div>Click To add</div>
+            </div>
+          </div>
+
+          <input
+            id="file"
+            #file
+            type="file"
+            style="display: none"
+            #selectFile
+            (change)="selectedFile($event)"
+          />
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat"> Due Date </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div>
+            <input
+              class="input"
+              id="dateFieldSize"
+              [(ngModel)]="createTicket.expectedTime"
+              matInput
+              [matDatepicker]="datepicker"
+              [min]="min"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="datepicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #datepicker> </mat-datepicker>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="ctrl">
+      <mat-accordion>
+        <h5>Extras</h5>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat"> Unit Test </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-button-toggle-group
+            class="toggle"
+            name="fontStyle"
+            [(ngModel)]="createTicket.UT"
+            aria-label="Font Style"
+          >
+            <mat-button-toggle class="toggleOption" value="true"
+              >Yes</mat-button-toggle
+            >
+            <mat-button-toggle class="toggleOption" value="false"
+              >No</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat"> Documentation </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-button-toggle-group
+            class="toggle"
+            name="fontStyle"
+            [(ngModel)]="createTicket.documentation"
+            aria-label="Font Style"
+          >
+            <mat-button-toggle class="toggleOption" value="true"
+              >Yes</mat-button-toggle
+            >
+            <mat-button-toggle class="toggleOption" value="false"
+              >No</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="ctrl">
+      <h5>Advance</h5>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-icon>share</mat-icon>
+            <mat-panel-title class="mat"> Share </mat-panel-title>
+          </mat-expansion-panel-header>
+          <button class="copyBtn" (click)="copyTicketId()">
+            Copy Ticket ID
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="btns">
+      <button
+        matTooltip="Save file"
+        [disabled]="isClicked"
+        (click)="onCreate()"
+      >
+        <mat-icon>save</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        *ngIf="data.edit"
+        [matMenuTriggerFor]="menu"
+        matTooltip="PopOver Me!"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu class="customize" #menu="matMenu">
+        <!-- <button *ngIf="data.edit" (click)="openDelete()">
+          <mat-icon style="color: red">delete</mat-icon>
+        </button>
+        <button *ngIf="data.edit" (click)="showLogs()">
+          <mat-icon>storage</mat-icon>
+        </button> -->
+        <span mat-menu-item>
+          <div *ngIf="data.edit" (click)="openDelete()">
+            <mat-icon style="color: red">delete</mat-icon> Delete
+          </div>
+          <div *ngIf="data.edit" (click)="showLogs()">
+            <mat-icon style="color: white">storage</mat-icon> Logs
+          </div>
+        </span>
+      </mat-menu>
+
+      <!-- <button class="button" cdkFocusInitial [disabled]="isClicked" (click)="onCreate()">
+        {{btnString}}
+      </button> -->
+    </div>
+  </div>
+</div>

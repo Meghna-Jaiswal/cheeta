@@ -1,0 +1,73 @@
+<div>
+  <h2>My Account</h2>
+</div>
+<div class="main">
+
+
+<div class="profile-area">
+<div class="image-wrapper">
+  <div class="image">
+    <img *ngIf="userProfile.profilePic" [src]="userProfile.profilePic">
+  <img *ngIf="!userProfile.profilePic" src="assets/image/profile.jpg">
+
+</div>
+<div class="picker">
+    <mat-icon (click)="filePicker.click()">add_a_photo
+    </mat-icon>
+</div>
+
+</div>
+      <input type="file" #filePicker style="display: none;" (change)="onFilePicked($event)">
+      <div class="loader-overlay" *ngIf="isLoading">
+          <div class="loader"></div>
+      </div>
+      <div class="field">
+          <button (click)="onEdit()">Save Changes</button>
+      </div>
+  </div>
+<div class="details">
+
+  <div class="tabs">
+    <div class="field">
+        <input type="text" placeholder="Name" [(ngModel)]="userProfile.name" />
+    </div>
+
+    <div class="field">
+        <input type="text" placeholder="Email" [(ngModel)]="userProfile.email" disabled />
+    </div>
+
+    <div class="field">
+        <select id="role" name="role" placeholder="Role" [(ngModel)]="userProfile.type">
+            <option *ngFor="let type of roleTypeArr" [value]="type">{{type | titlecase}}</option>
+        </select>
+    </div>
+  </div>
+
+
+<div class="tabs">
+  <div class="field">
+      <input type="number" placeholder="Contact" [(ngModel)]="userProfile.mobile" />
+  </div>
+  <div class="field">
+      <input type="text" placeholder="Telegram User Id" [(ngModel)]="userProfile.telegram.id" />
+  </div>
+
+  <div class="field">
+      <input type="text" placeholder="Telegram User Name" [(ngModel)]="userProfile.telegram.username" />
+  </div>
+</div>
+
+
+  <!-- <div>
+      <div class="loader-overlay" *ngIf="isLoading">
+          <div class="loader"></div>
+      </div>
+
+  </div> -->
+
+
+
+
+
+  </div>
+</div>

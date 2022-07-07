@@ -1,0 +1,114 @@
+@use "/src/variables";
+
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  mat-icon {
+    background-color: variables.$text-colour;
+  }
+  .headingContainer {
+    width: 100%;
+    margin: 4px;
+    border-radius: 5px;
+      color: variables.$accent-colour;
+        font-family: variables.$font-readex;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      .head {
+        border: 2px solid variables.$primary-colour;
+        width: 100%;
+        text-align: center;
+        border-radius: 4px;
+        background: variables.$secondary-colour;
+        font-family: variables.$font-readex;
+        padding: 10px;
+
+
+      }
+  .container {
+    margin: 4px ;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+
+    .coloum {
+      width: 100%;
+      background: variables.$secondary-colour;
+      font-family: variables.$font-readex;
+      border: 2px solid variables.$primary-colour;
+      border-radius: 5px;
+      padding: 5px;
+
+      .data {
+        background-color: variables.$primary-colour;
+        padding: 10px;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+        display: flex;
+        margin: 4px;;
+        align-items: center;
+        padding-left: 10px;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .buttonDiv{
+    display: flex;
+    justify-content: end;
+    button {
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+      padding: 8px 25px;
+      color: variables.$accent-colour;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: variables.$font-readex;
+      //   transition: all 100ms ease;
+
+      background-color: variables.$secondary-colour;
+      display: flex;
+      align-items: center;
+    }
+
+    button:hover {
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      background-color: variables.$accent-colour;
+    }
+  }
+
+
+  mat-icon {
+    color: variables.$accent-colour;
+    background: none;
+  }
+}
+.noData {
+  color: variables.$text-colour;
+  background-color: variables.$secondary-colour;
+  border: 2px solid variables.$primary-colour;
+  font-family: variables.$font-readex;
+  margin: 4px;
+  border-radius: 5px;
+  width: 100%;
+  height: 200px;;
+  text-align: center;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  .noD{
+    width: 100%;
+    h1{
+
+      font-family: variables.$font-readex;
+    }
+  }
+}

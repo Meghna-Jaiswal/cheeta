@@ -1,0 +1,71 @@
+@use '/src/variables';
+
+.card{
+  margin: 10px 0;
+  width: 100%;
+    background: variables.$primary-colour;
+    color: variables.$text-colour;
+    font-family: variables.$font-readex;
+    border-radius: 5px;
+    padding: 10px;
+
+    position: relative;
+
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .profiles{
+      display: flex;
+
+      img{
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        // transform: translate(40%,0);
+      }
+      img:not(:last-child) {
+        transform: translate(40%,0);
+      }
+
+    }
+  }
+
+  // div {
+  //   margin-bottom: 5px;
+  // }
+
+
+
+    h3 {
+      font-size: 1rem;
+      // font-weight: 500;
+      font-family: variables.$font-readex;
+      margin-bottom: 5px;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 2px;;
+    }
+  h5 {
+    font-size: .9rem;
+    font-weight: 600;
+    font-family: variables.$font-readex;
+    margin-bottom: 5px;
+  }
+
+  h6 {
+    font-size: .9rem;
+    font-weight: 400;
+    font-family: variables.$font-readex;
+  }
+
+}
+
+
+mat-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+

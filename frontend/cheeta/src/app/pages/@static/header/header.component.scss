@@ -1,0 +1,101 @@
+@use '/src/variables';
+@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
+
+
+header {
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+
+    .logo{
+      margin: 0 15px;
+      cursor: pointer;
+      font-family: 'Comforter', cursive;
+      font-size: 2rem;
+      text-align: center;
+      color: variables.$icon-colour;
+    }
+
+
+    .search-bar {
+      // margin: 0 15px;
+      height: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      font-family: variables.$font-readex;
+      // margin-right: 4%;
+        input {
+            background-color: variables.$secondary-colour;
+            color: variables.$text-colour;
+            font-family: variables.$font-readex;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            padding: 8px 25px;
+            font-size: .9rem;
+            outline: none;
+            transition: all 100ms ease;
+        }
+
+        input:focus {
+          border: 2px solid variables.$hover-colour;
+        }
+    }
+    .googleMeetButton{
+      margin-left: 3.9%;
+      button{
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: variables.$primary-colour;
+
+      }
+
+    }
+
+
+    .create {
+      margin: 0 15px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      button {
+        border: none;
+        border-radius: 5px;
+
+        cursor: pointer;
+        padding: 8px 25px;
+        color: variables.$text-colour;
+        font-size: .9rem;
+        font-weight: 600;
+        font-family: variables.$font-readex;
+        transition: all 100ms ease;
+        background-color: variables.$hover-colour;
+      }
+
+      button:hover {
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+        background-color: variables.$accent-colour;
+      }
+    }
+
+    .avator {
+      margin: 0 15px;
+      height: 100%;
+
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+        img {
+            width: 33px;
+            height: 33px;
+            border-radius: 50%;
+        }
+    }
+}

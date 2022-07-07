@@ -1,0 +1,47 @@
+{
+  "name": "cheeta-tags",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "coverage": "nyc --reporter=lcov --reporter=text npm run testnyc",
+    "testnyc": "nyc --reporter=text-summary --reporter=html mocha --timeout 30000 --recursive --exit",
+    "test": "mocha --recursive --reporter spec --exit ",
+    "dev-start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^2.18.2",
+    "aws-sdk": "^2.1050.0",
+    "axios": "^0.21.1",
+    "axios-retry": "^3.2.4",
+    "bluebird": "^3.5.1",
+    "chai": "^4.3.4",
+    "compression": "^1.7.4",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "debug": "~2.6.9",
+    "express": "~4.17.0",
+    "http-errors": "~1.6.3",
+    "https": "^1.0.0",
+    "joi": "^17.5.0",
+    "joi-objectid": "^4.0.2",
+    "moch": "0.0.1",
+    "mocha": "^8.3.2",
+    "mockgoose": "^8.0.4",
+    "mongoose": "^5.10.15",
+    "mongoose-dummy": "^1.0.8",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "~1.9.1",
+    "nyc": "^15.1.0",
+    "promise-retry": "^2.0.1",
+    "pug": "2.0.0-beta11",
+    "redis": "^3.1.2",
+    "request": "^2.88.2",
+    "supertest": "^6.1.3",
+    "url-regex": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}

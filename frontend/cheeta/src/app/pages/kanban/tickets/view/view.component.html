@@ -1,0 +1,114 @@
+<div class="main" *ngIf="!show">
+
+    <div class="content">
+        <label>Title </label>
+        <p>{{ticketInfo.title}}</p>
+    </div>
+
+    <div class="tab">
+
+        <div class="content">
+            <label>priority</label>
+            <div class="accentPara">{{ticketInfo.priority}}</div>
+        </div>
+
+        <div class="content">
+            <label>Type</label>
+            <div class="accentPara">{{ticketInfo.type}}</div>
+        </div>
+
+        <div class="content">
+            <label style="width: 50%">State</label>
+            <p>{{ticketInfo.state}}</p>
+        </div>
+
+    </div>
+
+    <div class="projectName" *ngIf="ticketInfo.tags.length>0">
+        <label>Project Name</label>
+        <div>{{ticketInfo.tags[0]?.split(':').pop()}}</div>
+    </div>
+
+
+
+    <div class="content">
+        <label>Description</label>
+        <p>{{ticketInfo.description}}</p>
+    </div>
+
+    
+
+    <div class="tab">
+
+        <div class="availableField">
+            <div *ngIf="ticketInfo.files.length>0">
+                <label>Files</label>
+                <div class="chips" >
+                    <div *ngFor="let f of ticketInfo.files" (click)="goToLink(f)">F
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="ticketInfo.tags>0">
+                <label>Tags</label>
+                <div class="chips">
+                    <div *ngFor="let tag of ticketInfo.tags">{{tag}}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label>Comments</label>
+                    <div class="comment-area">
+                        <div class="comment" *ngFor="let i of ticketInfo.comments">
+                            <div class="user-name">{{i.user}}</div>
+                            <div class="msg">{{i.msg}}</div>
+                            <div class="date-time">{{i.dateTime}}</div>
+                        </div>
+                    </div>
+                    <div class="comment-box">
+                        <input type="text" #comment>
+                        <button class="send" (click)="addComment(comment)">
+                            <mat-icon>keyboard_arrow_right</mat-icon>
+                        </button>
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <div class="membersList" *ngIf="ticketInfo.members.length>0">
+            <label>Members</label>
+            <div class="member">
+                <div *ngFor="let member of ticketInfo.members">
+                    <p>{{member.name? member.name: member.email}}</p>
+                    <img [src]="member.profilePic? member.profilePic : 'assets/image/background.jpg'">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div class="main" *ngIf="show">
+    <app-logs [ticketInfo]="ticketInfo"></app-logs>
+</div>
+
+
+<footer>
+    <div>
+        <mat-icon (click)="showLogs()" matTooltip="to see Logs">keyboard_arrow_up</mat-icon>
+        <mat-icon (click)="hideLogs()" matTooltip="to hide Logs">keyboard_arrow_down</mat-icon>
+    </div>
+    <div>
+        <button (click)="openEdit()">Edit
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="openDelete()">Delete
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</footer>

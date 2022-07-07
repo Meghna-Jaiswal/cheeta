@@ -1,0 +1,79 @@
+<div class="main">
+  <div id="crossSign">
+    <mat-icon
+      style="cursor: pointer; color: aliceblue"
+      (click)="this.dialogRef.close()"
+      >close</mat-icon
+    >
+  </div>
+
+  <div class="logs">
+    <h2>Logs</h2>
+  </div>
+
+  <div class="logsList">
+    <div class="logsData">
+      <img class="user-image" [src]="ticketInfo.user.profilePic" alt="" />
+      <div style="margin-left: 1%">
+        {{ ticketInfo.user.name }} created this ticket at
+        {{ ticketInfo.createdAt | date: "hh:mm:ss a dd/MM/yyyy" }}
+      </div>
+      <mat-icon class="icon">check_circle_outline</mat-icon>
+    </div>
+  </div>
+
+  <div class="logsList" *ngFor="let log of ticketInfo.logs">
+    <div class="logsData">
+      <!-- <div class="comment_details" *ngFor="let i of createTicket.comments">
+    <img
+      class="user-image"
+      src="../../../assets/image/background-2.jpg"
+      alt="Avatar"
+    />
+
+    <div class="comment" id="typeComment">
+      <div class="user-name">{{i.user}}</div>
+      <div class="msg">{{i.msg}}</div>
+      <div class="date-time">
+        {{i.dateTime | date: "hh:mm:ss- EEEE- dd/MM/YYYY"}}
+      </div> -->
+
+      <img
+        class="user-image"
+        [src]="log.user.profilePic"
+        alt=""
+      />
+      <div style="margin-left: 1%">
+        {{ log.user.email }} moved ticket from
+        {{ log.states.prev | uppercase }} to {{ log.states.new | uppercase }} at
+        {{ log.dateTime | date: "hh:mm:ss a dd/MM/yyyy" }}
+      </div>
+
+      <mat-icon>remove_circle_outline</mat-icon>
+    </div>
+    <!-- <div  style="display: flex; justify-content: center; color: green;" *ngIf="log.states.prev != log.states.new && log.states.new!='backlog'" >+4 added for {{log.user.email}}</div>
+<div  style="display: flex; justify-content: center; color: red;" *ngIf="log.states.prev != log.states.new && log.states.new==='backlog'" >-2 subtracted for {{log.user.email}}</div> -->
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        color: green;
+        font-size: smaller;
+      "
+      *ngIf="log.states.prev === 'development' && log.states.new === 'testing'"
+    >
+      +4 added for {{ log.user.email }}
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        color: green;
+        font-size: smaller;
+      "
+      *ngIf="log.states.prev === 'testing' && log.states.new === 'done'"
+    >
+      +4 added for {{ log.user.email }}
+    </div>
+  </div>
+</div>

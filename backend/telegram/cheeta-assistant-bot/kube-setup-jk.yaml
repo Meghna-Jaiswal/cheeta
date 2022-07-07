@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: PROJECT-NAME-JK
+  namespace: NAMESPACE-JK
+  labels:
+    app: PROJECT-NAME-JK
+spec:
+  selector:
+    matchLabels:
+      app: PROJECT-NAME-JK
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: PROJECT-NAME-JK
+    spec:
+      hostAliases:
+      - ip: "10.10.70.14"
+        hostnames:
+        - "mongodb-01"
+      - ip: "10.10.70.15"
+        hostnames:
+        - "mongodb-02"
+      - ip: "10.10.70.16"
+        hostnames:
+        - "mongodb-03"
+      containers:
+      - name: PROJECT-NAME-JK
+        image: DOCKER-IMAGE-NAME
+        env:
+        - name: BRANCH_NAME 
+          value: BRANCH-NAME-JK
+      imagePullSecrets:
+      - name: regcred

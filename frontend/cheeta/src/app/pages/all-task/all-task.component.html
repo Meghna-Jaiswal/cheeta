@@ -1,0 +1,43 @@
+<div class="loader-overlay" *ngIf="isLoading">
+  <div class="loader" ></div>
+</div>
+
+  <div class="filter"  >
+
+    <select id="role" placeholder="Role" [(ngModel)]="member" (change)="getUsersTickets()">
+     <optgroup label="Software-Developer" *ngIf="membersArr.developers.length">
+        <option *ngFor="let member of membersArr.developers" [value]="member._id" >{{member.name|titlecase }}</option>
+
+      </optgroup>
+      <optgroup label="QA-Analyst" *ngIf="membersArr.testers.length">
+        <option *ngFor="let member of membersArr.testers" [value]="member._id" >{{member.name|titlecase }}</option>
+
+      </optgroup>
+      <optgroup label="Others" *ngIf="membersArr.others.length">
+        <option *ngFor="let member of membersArr.others" [value]="member._id" >{{member.name|titlecase }}</option>
+        <option value="">Member</option>
+      </optgroup>
+      </select>
+</div>
+
+
+<div class="main">
+    <div class="tabs task" id="big">
+        <h2>Big Tasks</h2>
+        <div class="scrollTask">
+          <app-task *ngFor="let t of bigTask" [taskSummary]="t"></app-task>
+        </div>
+      </div>
+
+      <div class="tabs task" id="small">
+        <h2>Small Tasks</h2>
+        <div class="scrollTask">
+          <app-task *ngFor="let t of smallTask" [taskSummary]="t"></app-task>
+        </div>
+      </div>
+</div>
+<div >
+  <app-alltask-summary-component></app-alltask-summary-component>
+</div>
+
+

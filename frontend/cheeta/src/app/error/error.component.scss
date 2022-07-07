@@ -1,0 +1,70 @@
+
+
+.container {
+  width: 100%;
+  max-width: 450px;
+  background-color: #fff;
+}
+
+.header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.cross {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color:#FF0000;
+  position: relative;
+}
+.cross::after, .cross::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: #FFF;
+}
+
+.cross::after {
+  height: 20px;
+  width: 4px;
+  transform: translate(-50%, -70%);
+}
+.cross::before {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  transform: translate(-50%, 230%);
+}
+
+
+.msg {
+  padding: 20px 20px 10px;
+}
+.msg>p {
+  color: #333;
+  text-align: center;
+}
+
+.btn {
+  padding: 10px 0 20px;
+  text-align: center;
+  display: block;
+}
+
+.btn>button {
+  padding: 8px 35px;
+  background-color: #20a8d8;
+  font-size: 1.1rem;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}

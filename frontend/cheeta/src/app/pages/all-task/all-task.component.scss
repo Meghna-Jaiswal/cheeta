@@ -1,0 +1,93 @@
+@use "/src/variables";
+.main{
+    display: flex;
+    justify-content: flex-start;
+    background-color: variables.$secondary-colour;
+    width: 80%;
+    margin-top: 1%;
+    margin-left:10%;
+    border-radius:4px
+}
+#big{
+  border-right: solid variables.$primary-colour;
+  margin-right: -0.5%;
+}
+
+.tabs {
+    margin: 12px;
+    width: 100%;
+
+    height: 24rem;
+    background-color: variables.$secondary-colour;
+    border-radius: 5px;
+    // overflow-y: scroll;
+  }
+
+  .tabs>h2 {
+    margin: 0 0 15px;
+    color: variables.$accent-colour;
+    font-family: variables.$font-readex;
+  }
+  .tabs>div {
+    // max-height: 290px;
+  }
+
+.scrollTask{
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+  justify-content: space-around;
+}
+
+.filter{
+  display: flex;
+
+  width: 100%;
+  max-width: 250px;
+  select{
+    width: 100%;
+    background: variables.$secondary-colour;
+    color: variables.$text-colour;
+    font-family: variables.$font-readex;
+    border-radius: 5px;
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+
+    optgroup{
+      font-family: variables.$font-readex;
+    }
+    option{
+      font-family: variables.$font-readex;
+    }
+
+  }
+}
+
+button{
+  margin-left: 20px;
+          cursor: pointer;
+          width: 100%;
+          border-radius: 30px;
+          border: none;
+          border-radius: 5px;
+          padding: 8px 25px;
+          font-family: variables.$font-readex;
+          background-color: variables.$secondary-colour;
+          color: variables.$accent-colour;
+          font-size: .9rem;
+          font-weight: 600;
+          transition: all 100ms ease;
+        }
+
+        button:hover, button:focus {
+          font-family: variables.$font-readex;
+          color: variables.$text-colour;
+          background-color: variables.$accent-colour;
+        }
+
+
+        ::-webkit-scrollbar {
+          height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+          width: 4px;               /* width of vertical scrollbar */
+        }

@@ -1,0 +1,82 @@
+@hostname = http://localhost:3069
+
+@id = 624d2e4b818e55061cec38ea
+@authorization = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdvdXJhdi5wcmFqYXBhdGlAbW9naWlvLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJDRwZ1BDR1JvQnlwYXkzeVhqWVVxdi5xMURlR2dQNkgySEtCLzkxQXFBeHFzNk1rcUtsYzBpIiwidXNlcklkIjoiNjIzODUzN2JjYTc3YTBkMjM1YTg4Yjc1IiwibW9iaWxlIjoiNzUzNjA4NzE3NyIsImlhdCI6MTY0OTA1MDQyMiwiZXhwIjo2MzEzMDM5NDUwNDIyfQ.XxRAtckue0dDfQhmvl1RUVn503lkgj42n5fTmq-N5vo
+
+###
+POST {{hostname}}/cheeta-users
+Content-Type: application/json
+Authorization: {{authorization}}
+expected-code: 200
+
+{
+    "name": "gourav prajapati",
+    "email": "Gourav@gmail.com",
+    "mobile": "7536087177",
+    "password": "abcd123",
+    "type": "quality-analyst"
+}
+
+
+###
+get {{hostname}}/cheeta-users/{{id}}
+Authorization: {{authorization}}
+
+
+###
+POST {{hostname}}/cheeta-users/verifyOTP
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+    "email": "Gourav@gmail.com",
+    "otp": "1807",
+    "userId": "624d2e4b818e55061cec38ea"
+}
+
+
+###
+POST {{hostname}}/cheeta-users/login
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+    "email": "Gourav@gmail.com",
+    "password": "abcd123"
+}
+
+
+
+###
+POST {{hostname}}/cheeta-users/forgetPassword
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+    "email": "Gourav@gmail.com"
+}
+
+
+
+###
+POST {{hostname}}/cheeta-users/newPassword
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+    "email": "Gourav@gmail.com",
+    "otp": "4110",
+    "newPassword": "ab1234"
+}
+
+
+
+###
+PUT {{hostname}}/cheeta-users/{{id}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+
+###
+DELETE {{hostname}}/cheeta-users/{{id}}
+Authorization: {{authorization}}

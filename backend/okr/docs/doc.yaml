@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+  title: Okr Event API
+  description: Okr API help to create and manage user's okr events.
+  version: "2.0.0"
+
+host: localhost:3070
+schemes:
+  - http
+
+securityDefinitions:
+  token:
+    type: apiKey
+    name: Authorization
+    in: header
+produces:
+  - application/json
+paths:
+  /cheeta-okr:
+    post:
+      summary: Creates a new okr event.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Object body of the create new okr event
+          schema:
+            type: object
+            required:
+              - userId
+              - objective
+              - actions
+              - results
+            properties:
+              userId:
+                type: string
+              results:
+                type: array
+              status:
+                type: number
+              objective:
+                type: string
+              actions:
+                type: array
+              others: 
+                type: object
+            
+      security:
+        - token: []
+
+      responses:
+
+        400:
+          description: Insufficient info!
+        400:
+          description: Something went wrong!
+        200:
+          description: Successfully Registered!
+
+  /cheeta-okr/{userId}:
+      get:
+        summary: get all okr events
+        description: This endpoint gets all okr by sorting
+        parameters:
+          - name: userId 
+            in: path
+            type: string
+        
+        security:
+          - token: []
+
+        responses:
+          400:
+            description: Invalid UserId.
+          201:
+            description: Succesfully.
+          400:
+            description: Something went wrong!
+  /cheeta-okr/{id}:
+    delete:
+      summary: delete okr event
+      description: This endpoint delete okr by okr event id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: double
+
+      security:
+        - token: []
+
+      responses:
+       
+        400:
+          description: Invalid Id.
+        200:
+          description: OKR Succesfully Deleted!
+        400:
+          description: Something went wrong!    
+       
+definitions:
+  CheetaOKRSchema:
+    properties:
+      userId:
+        type: string
+      objective:
+        type: object
+      actions:
+        type: array
+      results:
+        type: array
+      status:
+        type: object
+      others:
+        type: object
+      
+  # Schema for status response body
+  Status:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message

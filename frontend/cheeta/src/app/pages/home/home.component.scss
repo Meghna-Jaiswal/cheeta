@@ -1,0 +1,147 @@
+@use '/src/variables';
+
+.main{
+    .row{
+      background-color: variables.$secondary-colour;
+      border-radius: 5px 0 0 0 ;
+      // padding: 10px;
+      display: flex;
+      padding: 10px 15px 0 15px ;
+      justify-content: space-between;
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      
+
+      div{
+        // margin: 10px;
+        padding: 10px 15px;
+      // width: 100%;
+        background: variables.$primary-colour;
+        border-radius: 5px;
+      //   color: variables.$text-colour;
+      }
+
+    }
+    .row-1{
+      background-color: variables.$secondary-colour;
+      // border-radius: 5px;
+      padding: 4px;
+      display: flex;
+
+      // justify-content: space-evenly;
+
+      overflow-x: scroll;
+    }
+
+    .tabs {
+      margin: 10px;
+      width: 100%;
+      min-width: 400px;
+      height: 350px;
+      padding: 10px 15px;
+      background: variables.$primary-colour;
+      border-radius: 5px;
+    }
+
+    .tabs>h3 {
+      margin: 0 0 15px;
+      color: variables.$accent-colour;
+      font-family: variables.$font-readex;
+    }
+    .tabs>div {
+      max-height: 290px;
+      overflow-y: scroll;
+    }
+
+    .task {
+      // width: 100%;
+      // max-width: 445px;
+
+      div {
+        overflow-y: scroll;
+      }
+    }
+
+    .score {
+      width: 300px;
+      min-width: 300px;
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+
+      .little-tab {
+        padding: 5px;
+        background: variables.$secondary-colour;;
+        border-radius: 5px;
+
+        h6 {
+          margin: 0 0 8px;
+          font-family: variables.$font-readex;
+        }
+      }
+
+      .overall-score {
+        margin: 0 0 15px;
+        font-family: variables.$font-readex;
+
+        p {
+          font-size: 4rem;
+          color: greenyellow;
+          font-family: variables.$font-readex;
+        }
+      }
+
+      .top-performers {
+        h2, h3, h4,h5, h6 {
+          margin: 5px 0;
+          font-family: variables.$font-readex;
+        }
+
+        div {
+          text-align: center;
+          overflow-y: scroll;
+          font-family: variables.$font-readex;
+        }
+      }
+
+    }
+
+
+    .row-2{
+      margin: 10px 0 0;
+      background-color: variables.$secondary-colour;;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+
+}
+.row,div{
+  font-family: variables.$font-readex;
+
+}
+
+::-webkit-scrollbar {
+  height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+  width: 4px;               /* width of vertical scrollbar */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: variables.$scrollbar;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: variables.$scrollbar-hover;
+}

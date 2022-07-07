@@ -1,0 +1,33 @@
+<header>
+  <div class="logo" routerLink="/">Cheetah&nbsp;</div>
+
+    <div class="search-bar">
+        <input list="recentSearch" type="search" placeholder="Search" (keyup.enter)="search($event)" (input)="changeInSearch($event)">
+        <datalist id="recentSearch" *ngIf="recentSearch.length">
+          <option *ngFor="let a of recentSearch" [value]="a">
+        </datalist>
+    </div>
+
+<!-- <div class="googleMeetButton">
+  <button >
+    <a href="https://meet.google.com"  target="_blank">
+      <img style="height: 4.7vh;" src="../../../../assets/image/google_meet_horizontal_wordmark_2020q4_1x_icon_124_40_2373e79660dabbf194273d27aa7ee1f5-removebg-preview.png" alt="">
+    </a>
+  </button>
+</div> -->
+
+
+    <div class="create">
+        <button (click)="openDialog()" >+ Ticket</button>
+    </div>
+
+    <div class="avator">
+        <!-- <img  [matMenuTriggerFor]="menu" src="assets/image/home.png"/> -->
+        <img *ngIf="userProfile" [src]="userProfile" [matMenuTriggerFor]="menu" >
+        <img *ngIf="!userProfile" src="assets/image/profile.jpg" [matMenuTriggerFor]="menu">
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/userProfile">Profile</button>
+            <button mat-menu-item (click)="onLogout()">Logout</button>
+        </mat-menu>
+    </div>
+</header>

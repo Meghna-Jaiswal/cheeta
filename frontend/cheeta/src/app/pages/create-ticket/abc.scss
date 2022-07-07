@@ -1,0 +1,678 @@
+@use "/src/variables";
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.display::-webkit-scrollbar {
+  display: none;
+}
+.controls::-webkit-scrollbar {
+  display: none;
+}
+
+.mat-menu-item {
+  height: inherit;
+  width: inherit;
+  // background-color: variables.$secondary-colour;
+  color: variables.$text-colour;
+}
+::ng-deep .customize {
+  background: variables.$secondary-colour;
+}
+
+.card {
+  padding: 20px;
+  width: 70vw;
+  min-width: 400px;
+
+  height: 100%;
+  border: 1px solid variables.$text-colour;
+  background-color: variables.$primary-colour;
+
+  display: grid;
+  grid-template-areas: "display control";
+  grid-template-columns: 3fr 1fr;
+
+  .display {
+    height: 80vh;
+    overflow-y: scroll;
+    grid-area: display;
+    padding: 10px 30px 10px 10px;
+
+    label {
+      float: left;
+      padding: 10px;
+      font-family: variables.$font-readex;
+      color: variables.$text-colour;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .titleInput {
+        // border: 1px solid white;
+        word-wrap: break-word;
+        font-size: 2;
+        font-weight: bold;
+        font-family: variables.$font-readex;
+      }
+
+      img {
+        margin: 0 0 0 20px;
+        height: 30px;
+        width: 30px;
+        border: 1px solid white;
+        border-radius: 50%;
+      }
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      // grid-template-columns: 1fr 1fr 1fr;
+
+      .title {
+        display: flex;
+        justify-content: flex-start;
+
+        .profiles {
+          display: flex;
+          padding: 10px;
+
+          img {
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            // transform: translate(40%,0);
+          }
+          img:not(:last-child) {
+            transform: translate(40%, 0);
+          }
+        }
+      }
+
+      // .members{
+      //   margin: 10px 0;
+      //   display: flex;
+      //   flex-direction: column;
+
+      //   mat-chip-list{
+      //     display: flex;
+      //     justify-content: flex-start;
+      //   }
+      //   mat-chip{
+
+      //     background-color: variables.$secondary-colour;
+      //     color: variables.$text-colour;
+      //     font-family: variables.$font-readex;
+      //   }
+
+      //   img {
+      //     margin: 0 0 0 0;
+      //     height: 30px;
+      //     width: 30px;
+      //     border: 1px solid white;
+      //     border-radius: 50%;
+      //   }
+
+      //   // .profiles{
+      //   //   display: flex;
+      //   //   padding: 10px;
+
+      //   //   img{
+      //   //     border-radius: 50%;
+      //   //     width: 30px;
+      //   //     height: 30px;
+      //   //     // transform: translate(40%,0);
+      //   //   }
+      //   //   img:not(:last-child) {
+      //   //     transform: translate(40%,0);
+      //   //   }
+
+      //   // }
+      // }
+
+      .priority {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+
+        mat-chip {
+          padding: 10px;
+          background-color: variables.$secondary-colour;
+          color: variables.$text-colour;
+          font-family: variables.$font-readex;
+        }
+      }
+
+      .task-type {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+
+        mat-chip {
+          padding: 10px;
+          background-color: variables.$secondary-colour;
+          color: variables.$text-colour;
+          font-family: variables.$font-readex;
+        }
+      }
+    }
+
+    .members {
+      margin: 10px 0;
+
+      display: flex;
+      flex-direction: column;
+
+      // mat-chip-list{
+
+      //   display: flex;
+      //   justify-content: flex-start;
+
+      // }
+      ::ng-deep .mat-chip-list .mat-chip-list-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      mat-chip {
+        padding: 10px;
+        background-color: variables.$secondary-colour;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+      }
+
+      img {
+        margin: 0 0 0 0;
+        height: 30px;
+        width: 30px;
+        border: 1px solid white;
+        border-radius: 50%;
+      }
+
+      // .profiles{
+      //   display: flex;
+      //   padding: 10px;
+
+      //   img{
+      //     border-radius: 50%;
+      //     width: 30px;
+      //     height: 30px;
+      //     // transform: translate(40%,0);
+      //   }
+      //   img:not(:last-child) {
+      //     transform: translate(40%,0);
+      //   }
+
+      // }
+    }
+    .tags {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+
+      mat-chip {
+        padding: 10px;
+        background-color: variables.$secondary-colour;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+      }
+    }
+
+    .title {
+      grid-template-columns: 3fr 1fr;
+
+      input {
+        // min-width: 200px;
+        width: 70%;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: variables.$font-readex;
+        font-size: 1rem;
+        color: variables.$text-colour;
+        background: variables.$primary-colour;
+        // word-wrap: break-word;
+        // word-break: break-all;
+      }
+      input::placeholder {
+        color: variables.$text-colour;
+        font-size: 1rem;
+        font-family: variables.$font-readex;
+      }
+      input:focus {
+        outline: none;
+      }
+    }
+    .descriptions {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+
+      textarea {
+        padding: 10px 10px;
+        // width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        border: none;
+        border-radius: 5px;
+        // max-width: 500px;
+        max-height: 300px;
+        // min-width: 200px;
+        min-height: 50px;
+        font-family: variables.$font-readex;
+        color: variables.$text-colour;
+        background-color: variables.$secondary-colour;
+      }
+    }
+    .attachments {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+
+      .files {
+        .files {
+          flex: 1;
+          // height: 100px;
+          padding: 10px;
+          // overflow-y: scroll;
+
+          mat-chip {
+            cursor: pointer;
+            font-family: variables.$font-readex;
+            background-color: variables.$accent-colour;
+            color: variables.$primary-colour;
+            border-radius: 0px;
+          }
+          // .mat-chip.mat-standard-chip{
+          //   width: 90px;
+          //   height: 70px;
+          //   border-radius: 0px;
+          //   background-color: variables.$secondary-colour;
+          //  }
+
+          // .mat-standard-chip .mat-chip-with-trailing-icon{
+          //   padding-bottom: 55px;
+          //   padding-left: 63px;
+          // }
+
+          button {
+            color: variables.$text-colour;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    .comments {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+
+      .comment-box {
+        display: flex;
+        font-family: variables.$font-readex;
+        border-top: none;
+        width: 400px;
+
+        input {
+          flex: 1;
+          padding: 10px;
+          color: variables.$text-colour;
+          font-family: variables.$font-readex;
+          background-color: variables.$secondary-colour;
+          border-radius: 5px;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .comment_details {
+    overflow: x;
+  }
+  .comment-area {
+    display: flex;
+    flex-direction: column-reverse;
+
+    margin-top: 2%;
+    width: 80%;
+    border-radius: 5px 5px 0 0;
+    //  overflow-y: scroll;
+  }
+  .comment {
+    // background-color: variables.$secondary-colour;
+    color: variables.$text-colour;
+    font-family: variables.$font-readex;
+    // border-radius: 5px;
+    width: 100%;
+    margin-left: 3px;
+    padding-left: 6px;
+    // margin-top: 10px;
+  }
+  .user-name {
+    font-size: 0.7rem;
+    color: variables.$accent-colour;
+    font-family: variables.$font-readex;
+  }
+  .msg {
+    font-size: 1rem;
+    background-color: variables.$secondary-colour;
+    font-family: variables.$font-readex;
+    height: 5vh;
+    border-radius: 5px;
+    padding: 5px;
+    // padding-top: 1%;
+  }
+
+  .date-time {
+    font-size: 0.6rem;
+    font-family: variables.$font-readex;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 5px;
+  }
+
+  .chipDesign {
+    height: 70px;
+    width: 100px;
+    border-radius: 5px;
+    // background-image: url(../../../assets/image/background.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .attachmented-image {
+    height: 70px;
+    width: 100px;
+    border-radius: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #matButton {
+    margin-top: -65%;
+    margin-left: 85%;
+  }
+  .image-wrapper {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+  .user-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-left: -2%;
+  }
+  .comment_details {
+    display: flex;
+    // flex-direction: column;
+  }
+  #typeComment {
+    margin-left: 7px;
+    // height: 7vh;
+    width: 100%;
+  }
+  .ticketState {
+    margin-top: 3%;
+    color: variables.$text-colour;
+    display: flex;
+    justify-content: center;
+    font-family: variables.$font-readex;
+  }
+  .dueDateLable {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: -5%;
+    font-size: 0.8rem;
+    color: variables.$text-colour;
+    font-family: variables.$font-readex;
+  }
+  .controls {
+    height: 80vh;
+    grid-area: control;
+    background-color: variables.$primary-colour;
+    position: relative;
+    overflow-y: scroll;
+
+    h4 {
+      margin: 10px;
+      text-align: center;
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+      border-radius: 4px;
+    }
+
+    .ctrl {
+      margin: 10px;
+
+      h5 {
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+        padding: 10px;
+      }
+
+      .toggle {
+        position: relative;
+        overflow-y: scroll;
+        margin-left: 10px;
+        width: 100%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .toggleOption {
+          position: relative;
+          // padding-top: -20px;
+          padding: 2px;
+          margin: 2px;
+          border-radius: 20px 20px;
+          font-weight: bold;
+          font-family: variables.$font-readex;
+          color: variables.$text-colour;
+          background-color: variables.$primary-colour;
+        }
+        // .toggleOption:not(:last-child) {
+        //   margin-right: 10px;
+        // }
+
+        .mat-button-toggle-checked {
+          background-color: variables.$accent-colour;
+        }
+      }
+
+      .tag {
+        div {
+          padding: 10px;
+          mat-chip-list {
+            display: flex;
+            justify-content: flex-start;
+          }
+          mat-chip {
+            background-color: variables.$primary-colour;
+            color: variables.$text-colour;
+            font-family: variables.$font-readex;
+          }
+
+          img {
+            margin: 0 0 0 0;
+            height: 30px;
+            width: 30px;
+            border: 1px solid white;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-family: variables.$font-readex;
+        color: variables.$text-colour;
+        background: variables.$primary-colour;
+      }
+
+      .files-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          border: none;
+          outline: none;
+          padding: 5px 5px 3px;
+          background: none;
+          font-size: 1.5rem;
+          font-family: variables.$font-readex;
+          color: variables.$text-colour;
+          border: 2px solid variables.$text-colour;
+          cursor: pointer;
+        }
+        div {
+          font-family: variables.$font-readex;
+          color: variables.$text-colour;
+        }
+      }
+    }
+
+    .btns {
+      position: absolute;
+
+      // bottom: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin-left: 12%;
+
+      button {
+        background-color: variables.$secondary-colour;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+        padding: 10px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: variables.$accent-colour;
+        font-family: variables.$font-readex;
+        color: variables.$text-colour;
+      }
+    }
+  }
+}
+::ng-deep.mat-button-toggle-appearance-standard
+  .mat-button-toggle-label-content {
+  line-height: 10px;
+  margin: 10px 0px 10px 0px;
+}
+.mat-s {
+  display: inline-block;
+  position: relative;
+  left: 3px;
+  width: 40%;
+}
+.mat-b {
+  display: inline-block;
+  position: relative;
+  right: 30px;
+  // left: 50px;
+  width: 43%;
+}
+
+.copyBtn {
+  // background-color: variables.$secondary-colour;
+  color: variables.$text-colour;
+  font-family: variables.$font-readex;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  background: #0000ff;
+}
+
+mat-expansion-panel {
+  background-color: variables.$secondary-colour;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  padding: 0%;
+  width: 100%;
+
+  mat-expansion-panel-header {
+    font-family: variables.$font-readex;
+    height: 50px;
+    padding: 0px 7px;
+
+    mat-panel-title {
+      font-family: variables.$font-readex;
+      color: variables.$text-colour;
+      // padding: 0%;
+    }
+  }
+}
+::ng-deep .mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 3px 5p !important;
+}
+
+mat-icon {
+  color: variables.$text-colour;
+}
+mat-datepicker-toggle {
+  color: variables.$text-colour;
+}
+.mat {
+  margin-left: 30px;
+}
+
+.priority {
+  text-align: center;
+}
+
+.mat-c {
+  margin: 5px;
+}
+
+#dateFieldSize {
+  width: 77%;
+  margin-left: -5%;
+}
+
+.mat-standard-chip {
+  padding: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: variables.$scrollbar;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: variables.$scrollbar-hover;
+}

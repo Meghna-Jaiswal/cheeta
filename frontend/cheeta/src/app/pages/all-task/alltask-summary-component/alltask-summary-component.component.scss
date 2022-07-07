@@ -1,0 +1,61 @@
+@use '/src/variables';
+
+:host {
+  flex: 1;
+}
+
+
+.container{
+  margin-top: 20px;
+    background-color: #111214;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #111214;
+    border-radius: 5px;
+
+    .head-1 {
+      display: flex;
+    }
+
+    .headings:not(:last-child) {
+      margin-right: 2px;
+    }
+    .heading{
+      margin: 1px 0;
+      width: 100%;
+      padding: 10px 15px;
+      background-color: variables.$secondary-colour;;
+      border-radius: 5px;
+    }
+    .headings {
+      margin: 1px 0;
+      width: 100%;
+      padding: 10px 15px;
+      background-color: variables.$primary-colour;;
+      border-radius: 5px;
+
+      h4 {
+        margin: 0 0 15px;
+        color: variables.$accent-colour;
+        font-family: variables.$font-readex;
+      }
+    }
+
+    .count {
+
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        color: variables.$text-colour;;
+        font-family: variables.$font-readex;
+        font-size: 1.1rem;
+      }
+    }
+
+    .project-name {
+      color: variables.$text-colour;
+      font-family: variables.$font-readex;
+        text-align: center;
+    }
+}

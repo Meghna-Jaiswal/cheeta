@@ -1,0 +1,137 @@
+@use "/src/variables";
+@import url("https://fonts.googleapis.com/css2?family=Comforter&display=swap");
+
+.container {
+  background-color: variables.$primary-colour;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .box {
+    width: 100%;
+    max-width: 450px;
+    padding: 50px;
+
+    .heading {
+      text-align: center;
+
+      div {
+        margin-bottom: 20px;
+      }
+      .logo {
+        cursor: pointer;
+        font-family: "Comforter", cursive;
+        font-size: 2.5rem;
+        color: variables.$text-colour;
+      }
+
+      h1 {
+        color: variables.$accent-colour;
+        font-family: variables.$font-readex;
+        padding-top: 15px;
+      }
+    }
+
+    .row {
+
+      margin-left: 5%;
+      padding-bottom: 10px;
+      font-family: variables.$font-readex;
+
+      mat-label {
+        padding: 20px;
+        color: variables.$text-colour;
+      }
+
+      input,
+      button {
+        width: 90%;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        border: none;
+        font-size: .9rem;
+        font-weight: 600;
+        font-family: variables.$font-readex;
+        color: variables.$text-colour;
+        background-color: variables.$primary-colour;
+      }
+      div{
+        span{
+          font-family: variables.$font-readex;
+        }
+      }
+      div, span{
+        text-align: center;
+
+      }
+      button {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: variables.$accent-colour;
+      }
+      button:hover {
+        color: variables.$text-colour;
+        background-color: variables.$accent-colour;
+      }
+
+
+      p {
+        margin-top: 10px;
+        text-align: center;
+        font-size: .8rem;
+        font-weight: 400;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+      }
+      a {
+        color: variables.$green;
+        font-family: variables.$font-readex;
+      }
+    }
+  }
+}
+
+
+.vbtn{
+  height: 6vh
+}
+.createLogo {
+  cursor: pointer;
+  font-family: "Comforter", cursive;
+  font-size: 2.5rem;
+  color: variables.$text-colour;
+  margin-left: 35%;
+  margin-bottom: 5%;
+}
+.innerContainer {
+  background-color: #111111;
+  border-radius: 5px;
+
+}
+
+.example-right-align {
+  text-align: right;
+}
+button {
+  background: none;
+}
+.image-wrapper{
+margin-top: 6% ;
+}
+@media screen and (max-width:1050px){
+  img{
+    display: none;
+  }
+
+}
+@media screen and (max-width:768px){
+  img{
+    display: none;
+  }
+
+}
+

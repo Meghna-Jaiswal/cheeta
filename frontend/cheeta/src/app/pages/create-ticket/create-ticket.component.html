@@ -1,0 +1,202 @@
+<div class="loader-overlay" *ngIf="isLoading">
+    <div class="loader" ></div>
+ </div>
+
+<div class="card" *ngIf="!isLoading" >
+
+    <div class="header">
+        <mat-icon style="cursor: pointer;" (click)="this.dialogRef.close()">close</mat-icon>
+    </div>
+
+    <div class="rows">
+        <label class="label">Title</label>
+        <input placeholder="" [(ngModel)]="createTicket.title"  />
+    </div>
+
+    <div class="rows">
+            <label class="label">Priority</label>
+            <mat-button-toggle-group class="toggle primary"  [(ngModel)]="createTicket.priority" >
+                <mat-button-toggle class="toggleOption" value="P0">P0</mat-button-toggle>
+                <mat-button-toggle class="toggleOption" value="P1">P1</mat-button-toggle>
+                <mat-button-toggle class="toggleOption" value="P2">P2</mat-button-toggle>
+                <mat-button-toggle class="toggleOption" value="P3">P3</mat-button-toggle>
+            </mat-button-toggle-group>
+    </div>
+
+    <div class="rows">
+        <textarea rows="5" placeholder="Description" [(ngModel)]="createTicket.description" >
+        </textarea>
+    </div>
+
+    <!-- type of ticket like big or small -->
+    <div class="rows" >
+        <label class="label">Type</label>
+        <mat-button-toggle-group class="toggle" name="fontStyle" [(ngModel)]="createTicket.type" aria-label="Font Style">
+            <mat-button-toggle class="toggleOption" value="small">Small</mat-button-toggle>
+            <mat-button-toggle class="toggleOption" value="big">Big</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+
+
+
+    <div class="checkbox">
+        <mat-checkbox [labelPosition]="labelPosition" color="primary" [(ngModel)]="addOn">Additional Details</mat-checkbox>
+    </div>
+
+
+
+    <div class="rows" *ngIf="addOn">
+
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let tag of createTicket.tags" (removed)="removeTags(tag)">
+                {{tag}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+    <div class="rows" *ngIf="addOn">
+        <input list="projectNameArr" type="text"  [(ngModel)]="tags" (keyup.enter)="addTags($event)" />
+        <datalist id="projectNameArr" *ngIf="projectNameArr.length">
+          <option *ngFor="let a of projectNameArr" [value]="a">
+        </datalist>
+        <mat-icon  style="color:white" matTooltip="Should be entered in following formats:
+                                                    P:project_name,
+                                                    B:bug_of_Project,
+                                                    F:feature,
+
+                                                    ex: P:maya, B:maya">info</mat-icon>
+    </div>
+
+    <div class="rows" *ngIf="addOn">
+
+    </div>
+
+    <div class="special-row" *ngIf="addOn">
+        <label class="label">Files</label>
+        <div class="files-area">
+            <div class="files">
+            <mat-chip-list  #chipList>
+                <mat-chip *ngFor="let f of createTicket.files"  (click)="goToLink(f)"  (removed)="removeFiles(f)">F
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+
+            <!-- <a *ngFor="let f of createTicket.files" [href]="f" target="_blank" class="file" >F
+                <mat-icon style="color: red;" (removed)="removeFiles(f)">cancel</mat-icon>
+            </a> -->
+
+          <!-- </div> -->
+          <button (click)="selectFile.click()">
+              <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <input id="file" #file type="file" style="display: none;" #selectFile (change)="selectedFile($event)">
+    </div>
+
+    <!-- members in project -->
+    <div class="rows" *ngIf="addOn">
+        <label class="label">Members List </label>
+        </div>
+    <div class="rows"*ngIf="addOn">
+        <div class="tag">
+                <mat-chip-list  #chipList>
+                    <mat-chip *ngFor="let i of createTicket.members" (removed)="remove(i)">
+                        {{i.email}}
+                        <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                </mat-chip-list>
+
+                    <!-- <mat-icon  #menu (click)="addMember($event)">keyboard_arrow_down_icon</mat-icon> -->
+
+            <!-- <select  #menu id="role" placeholder="Role" (change)="addMember($event)">
+                <option *ngFor="let member of membersArr" [value]="member._id">{{member.name + "(" + member.email +
+                    ")"}}</option>
+            </select> -->
+            <select id="role" placeholder="Role" [(ngModel)]="member" (change)="addMember($event)">
+                <optgroup label="Software-Developer" *ngIf="membersArr.developers.length">
+                   <option *ngFor="let member of membersArr.developers" [value]="member._id" >{{member.name}}</option>
+
+                 </optgroup>
+                 <optgroup label="QA-Analyst" *ngIf="membersArr.testers.length">
+                   <option *ngFor="let member of membersArr.testers" [value]="member._id" >{{member.name}}</option>
+
+                 </optgroup>
+                 <optgroup label="Others" *ngIf="membersArr.others.length">
+                   <option *ngFor="let member of membersArr.others" [value]="member._id" >{{member.name}}</option>
+                   <option value="">member</option>
+                 </optgroup>
+                 </select>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- comments -->
+
+
+
+    <div class="checkbox">
+        <mat-checkbox [labelPosition]="labelPosition" color="primary" [(ngModel)]="advanceOn">Advance Details</mat-checkbox>
+    </div>
+
+    <!-- UT -->
+    <div class="rows" *ngIf="advanceOn">
+        <label class="label">Unit Tests </label>
+        <mat-button-toggle-group class="toggle" name="fontStyle" [(ngModel)]="createTicket.UT" aria-label="Font Style">
+            <mat-button-toggle class="toggleOption" value="true">Yes</mat-button-toggle>
+            <mat-button-toggle class="toggleOption" value="false">No</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+
+    <!-- documentation -->
+    <div class="rows" *ngIf="advanceOn">
+        <label class="label">Documentation </label>
+        <mat-button-toggle-group class="toggle" name="fontStyle" [(ngModel)]="createTicket.documentation" aria-label="Font Style">
+            <mat-button-toggle class="toggleOption" value="true">Yes</mat-button-toggle>
+            <mat-button-toggle class="toggleOption" value="false">No</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <!-- expected time -->
+    <div class="rows" *ngIf="advanceOn">
+        <label class="label">Expected time </label>
+        <input class="input" [(ngModel)]="createTicket.expectedTime" matInput [matDatepicker]="datepicker" [min]="min">
+          <mat-datepicker-toggle matSuffix [for]="datepicker" style="color: white;"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #datepicker>
+          </mat-datepicker>
+    </div>
+
+
+    <div class="special-row" *ngIf="advanceOn">
+      <label class="label">Comments</label>
+      <div class="comment-area">
+        <div class="comment" *ngFor="let i of createTicket.comments">
+          <div class="user-name">{{i.user}}</div>
+          <div class="msg">{{i.msg}}</div>
+          <div class="date-time">{{i.dateTime}}</div>
+        </div>
+      </div>
+      <div class="comment-box">
+        <input type="text" #comment>
+        <button class="send" (click)="addComment(comment)">Send</button>
+      </div>
+    </div>
+
+    <button class="button" cdkFocusInitial
+        [disabled]="isClicked"
+        (click)="onCreate()">
+        {{btnString}}
+    </button>
+
+</div>

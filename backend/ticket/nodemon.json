@@ -1,0 +1,7 @@
+{
+    "env":{
+        "PORT": 3071,
+        "MONGO_DB_URL": "mongodb://localhost/cheeta-ticket",
+        "JWT_BASE_URL": "https://dev.apis.mogiio.com/jwt/"
+    }
+}

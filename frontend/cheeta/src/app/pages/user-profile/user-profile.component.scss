@@ -1,0 +1,147 @@
+@use "/src/variables";
+
+// .main {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100%;
+//   width: 100%;
+
+h2 {
+  padding: 10px;
+  height: 30%;
+  font-family: variables.$font-readex;
+  color: variables.$accent-colour;
+  text-align: center;
+  font-size: 2.5rem;
+  width: 100%;
+}
+
+//   .tab {
+//     display: flex;
+//     justify-content: space-evenly;
+//     // flex-direction: column;
+
+//     .tabs {
+//       text-align: center;
+//       align-items: flex-end;
+//     }
+//   }
+// }
+// .details-area {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: auto;
+// }
+// .details {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 7%;
+//   margin-left: 3%;
+// }
+// img {
+//   // border-radius: 70%;
+//   // display: inline;
+//   // overflow: hidden;
+//   // width: 300px;
+//   // // width: 50%;
+//   // border: variables.$text-colour;
+//   display: inline;
+//   margin: 0 auto;
+//   height: 100%;
+//   width: auto;
+// }
+input,
+select,
+button {
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  min-width: 300px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: variables.$font-readex;
+  color: variables.$text-colour;
+  border: none;
+}
+input,
+select {
+  background-color: variables.$secondary-colour;
+}
+button {
+  background-color: variables.$accent-colour;
+}
+button:hover {
+  background-color: variables.$secondary-colour;
+}
+
+mat-icon {
+  color: white;
+}
+
+// @media only screen and (max-width: 800px) {
+//   /* For mobile phones: */
+//   .details {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
+// @media only screen and (max-width: 450px) {
+//   /* For mobile phones: */
+//   .tab {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 100%;
+}
+img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+.profile-area {
+  padding-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .image-wrapper {
+    position: relative;
+  }
+  .picker {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 10px;
+    right: 50px;
+    padding: 10px;
+    background-color: variables.$accent-colour ;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  .image {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
+  }
+}
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  // width: 100%;
+}

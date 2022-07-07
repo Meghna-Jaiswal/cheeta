@@ -1,0 +1,218 @@
+@use '/src/variables';
+@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
+
+
+.container {
+  background-color: variables.$primary-colour;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+
+    .box{
+      display: flex;
+      text-align: center;
+      justify-content: center;
+
+      .logo {
+        margin-top: 3%;
+        cursor: pointer;
+        font-family: "Comforter", cursive;
+        font-size: 2.5rem;
+        color: variables.$text-colour;
+      }
+      .innerContainer{
+        background-color: variables.$secondary-colour;
+        width: 450px;
+        padding: 10px;
+        border-radius: 5px;
+
+        h1{
+          color: variables.$accent-colour;
+          font-family: variables.$font-readex;
+          text-align: center;
+          padding: 10px;
+        }
+        .row{
+          font-family: variables.$font-readex;
+
+          h4{
+            color: variables.$text-colour;
+            font-family: variables.$font-readex;
+            margin-top: 30px;
+            padding: 10px;
+          }
+
+          input, button {
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            min-width: 300px;
+            font-size: .9rem;
+            font-weight: 600;
+            font-family: variables.$font-readex;
+            color: variables.$text-colour;
+            border: none;
+            background-color: variables.$primary-colour;
+
+          }
+          div{
+            span{
+              font-family: variables.$font-readex;
+            }
+          }
+          button{
+
+            font-size: .9rem;
+            font-weight: 600;
+            color: variables.$accent-colour;
+          }
+          button:hover{
+            color: variables.$text-colour;
+            background-color: variables.$accent-colour;
+          }
+
+          p{
+            padding: 10px;
+            text-align: center;
+            font-size: .8rem;
+            font-weight: 400;
+            color: variables.$text-colour;
+            font-family: variables.$font-readex;
+          }
+          a{
+            color: variables.$green;
+            font-family: variables.$font-readex;
+          }
+        }
+
+      }
+    }
+    .image-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img{
+        height: 50%;
+        width: 80%;
+      }
+    }
+
+
+}
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a6acbb;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #838a9b;
+}
+@media screen and (max-width: 768px) {
+  img{
+    display: none;
+
+  }
+  .innerContainer{
+    margin-top: 20%;
+
+  }
+  .logo{
+    position: relative;
+    top: 15%;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// a.reveal-button{
+//     position: relative;
+//     align-self: center;
+//     left: 40%;
+// }
+// a.reveal-button nb-icon {
+//     font-size: 3em;
+//     color: grey;
+// }
+// h3.resend{
+//     text-align: center;
+//     font-size: 16px;
+//     top: 32px;
+//     position: relative;
+// }
+// nb-card-body.button-next{
+//     padding: 20px;
+// }
+// span.timer{
+//     width: 50px;
+//     height: 50px;
+//     display: block;
+//     border: 1px solid #808080;
+//     border-radius: 50%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
+// @media screen and (max-width: 620px) {
+//     nb-card.main-login{
+//         position: relative;
+//         top: 10%;
+//     }
+//     nb-card-header.header-reg h2 {
+//         font-size: 22px;
+//     }
+//     a.reveal-button{
+//         position: relative;
+//         align-self: center;
+//         left: 35% !important;
+//     }
+
+// }
+// @media screen and (min-width: 620px) {
+//     nb-card-header.header-reg{
+//         padding-bottom: 40px;
+//     }
+// }

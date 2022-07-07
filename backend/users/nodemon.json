@@ -1,0 +1,9 @@
+{
+    "env":{
+        "PORT": 3069,
+        "MONGO_DB_URL": "mongodb://localhost/cheeta-users",
+        "JWT_BASE_URL": "https://dev.apis.mogiio.com/jwt/",
+        "GLOBAL_JWT": "global_jwt_fndsjkbgj23432fdfb",
+        "EMAIL_BASE_URL": "https://dev.apis.mogiio.com/email-configs/"
+    }
+}

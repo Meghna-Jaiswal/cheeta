@@ -1,0 +1,22 @@
+@use '/src/variables';
+
+.container{
+    div{
+        text-align: center;
+        background-color: variables.$secondary-colour;
+        color: variables.$text-colour;
+        font-family: variables.$font-readex;
+        padding: 10px;
+
+        button{
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            color: variables.$text-colour;
+            font-family: variables.$font-readex;
+            background-color: variables.$accent-colour;
+        }
+    }
+    
+}

@@ -1,0 +1,82 @@
+
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // font-family: 'Courier New', Courier, monospace;
+}
+html, body { height: 100vh; }
+body {
+  margin: 0;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cdk-overlay-backdrop {
+  // background-color: rgba(107, 1, 213, 0.204) !important;
+  backdrop-filter: blur(10px);
+}
+.mat-dialog-container {
+  padding: 0px !important;
+}
+.mat-checkbox-frame{
+  border-color: white;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+
+
+
+
+// loader
+
+.loader-overlay{
+  // text-align: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left:0;
+  right: 0;
+  background: #33333355;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.loader,
+.loader::before,
+.loader::after{
+  content: "";
+  width: 40px;
+  aspect-ratio: .5;
+  display:grid;
+  grid-area: 1/1;
+  background: radial-gradient(white 68%,transparent 72%) 0% 50%/100%
+  50% no-repeat;
+  animation: l 1.2s infinite linear calc(var(--s,0)*.4s);
+  transform: translate(calc(var(--s, 0)*150%));
+}
+
+.loader::before {--s: -1}
+.loader::after {--s: 1}
+
+@keyframes l {
+  20% {background-position: 0% 0%}
+  40% {background-position: 0% 100%}
+  60% {background-position: 0% 50%}
+}

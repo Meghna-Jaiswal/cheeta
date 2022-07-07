@@ -1,0 +1,39 @@
+@hostname =http://localhost:3070
+
+@authorization = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdvdXJhdi5wcmFqYXBhdGlAbW9naWlvLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJDRwZ1BDR1JvQnlwYXkzeVhqWVVxdi5xMURlR2dQNkgySEtCLzkxQXFBeHFzNk1rcUtsYzBpIiwidXNlcklkIjoiNjIzODUzN2JjYTc3YTBkMjM1YTg4Yjc1IiwibW9iaWxlIjoiNzUzNjA4NzE3NyIsImlhdCI6MTY0OTA1MDQyMiwiZXhwIjo2MzEzMDM5NDUwNDIyfQ.XxRAtckue0dDfQhmvl1RUVn503lkgj42n5fTmq-N5vo
+
+###
+POST {{hostname}}/cheeta-tags
+Content-Type: application/json
+Authorization: {{authorization}}
+expected-code: 200
+
+{
+    "tags": ["P:go", "P:asdf"]
+}
+
+
+###
+POST {{hostname}}/cheeta-tags/getTagNames
+Content-Type: application/json
+Authorization: {{authorization}}
+{
+    "tagIds": ["624be58e7bb587df79e0bb5d"]
+}
+
+
+###
+POST {{hostname}}/cheeta-tags/getTagIds
+Content-Type: application/json
+Authorization: {{authorization}}
+{
+    "tags": ["go"]
+}
+
+###
+GET {{hostname}}/cheeta-tags/projectsList
+Authorization: {{authorization}}
+
+###
+GET {{hostname}}/cheeta-tags/projectsWithIds
+Authorization: {{authorization}}

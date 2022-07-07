@@ -1,0 +1,71 @@
+<div class="container">
+
+
+  <div class="box">
+    <div class="createLogo">Cheeta</div>
+    <div class="innerContainer">
+
+      <h1>Create New Account</h1>
+
+      <div class="row">
+        <input type="text" [(ngModel)]="userObj.name" (keyup)="onUserNameKeyUp()" placeholder="Name" required/>
+        <div>
+        <span *ngIf="!userNameValid" style="color: red;">Required 5-30 chars.</span>
+      </div>
+      </div>
+
+      <div class="row">
+        <input type="text" [(ngModel)]="userObj.mobile" (keyup)="onPhoneKeyUp()"  maxlength="11"  placeholder="Mobile No." required autocomplete="off"/>
+        <div>
+          <span *ngIf="!phoneValid" style="color: red;">* Required (10 numbers.)</span>
+        </div>
+      </div>
+      <div class="row">
+        <select type="text" [(ngModel)]="userObj.type" (keyup)="onTypeOption()" placeholder="Role" required>
+          <option *ngFor="let type of roleTypeArr" [value]="type">{{type | titlecase}}</option>
+        </select>
+        <div>
+          <span *ngIf="!typeValid" style="color: red;">Field Required</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <input type="text" [(ngModel)]="userObj.email" (keyup)="onEmailKeyUp()" placeholder="Email@abc.com" required autocomplete="off"/>
+        <div>
+          <span *ngIf="!emailValid" style="color: red;">Enter Valid email id</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <input type="password" [(ngModel)]="userObj.password" (keyup)="onPassKeyUp()" placeholder="Password" required/>
+        <div>
+          <span *ngIf="!passValid" style="color: red;">enter valid password </span>
+        </div>
+      </div>
+
+        <div class="row">
+          <input type="password" [(ngModel)]="userObj.confirmPassword" (keyup)="onPassKeyUp()" placeholder="Confirm Password" >
+          <div>
+            <span *ngIf="!passValid" style="color: red;">enter valid password </span>
+          </div>
+        </div>
+
+      <div class="row">
+        <button (click)="onRegister()">Create Account</button>
+      </div>
+
+      <div class="row" >
+        <p>
+          Already a Member ?
+          <a href="" routerLink='/auth/login'>LogIn</a>
+        </p>
+      </div>
+
+    </div>
+
+
+  </div >
+  <div class=" image-wrapper">
+    <img src="../../../../assets/image/register.png" alt="image">
+  </div>
+</div>

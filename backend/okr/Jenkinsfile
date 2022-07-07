@@ -1,0 +1,126 @@
+pipeline {
+
+  environment {
+    dirName = 'cheeta/backend/okr'
+    projectName = 'cheeta-okr'
+    pathName = 'cheeta-okr'
+    projectType = "express"
+
+    def externalMethods = load 'jenkins/helper.groovy'
+
+    ltemp = externalMethods.loadEnv( dirName, projectName, projectType, pathName)
+
+  }
+  agent any
+  stages {
+
+    stage('Building image') {
+      steps{
+        dir("$dirName") {
+            script {
+              dockerImage = docker.build(imagename, buildParams )
+            }
+        }
+      }
+    }
+    // stage('Running Unit Test Cases') {
+    //   steps{
+    //     dir("$dirName") {
+    //         script {
+    //             dockerImage.inside {
+    //                 sh 'echo \'http://dl-cdn.alpinelinux.org/alpine/v3.9/main\' >> /etc/apk/repositories'
+    //                 sh 'echo \'http://dl-cdn.alpinelinux.org/alpine/v3.9/community\' >> /etc/apk/repositories'
+    //                 sh 'apk update'
+    //                 sh 'apk add mongodb yaml-cpp=0.6.2-r2'
+    //                 sh 'apk add mongodb-tools'
+    //                 sh 'mongo -version'
+    //                 sh 'mkdir /mdbdata'
+    //                 sh 'mongod --dbpath /mdbdata&'
+    //                 sh 'apk --update add redis'
+    //                 sh 'redis-server&'
+    //                 // sh 'npm run coverage'
+    //                 def status = sh(script:"npm run coverage", returnStatus:true)
+    //                 print "status"
+    //                 print status
+    //                 if (status) {
+    //                     currentBuild.result = 'ABORTED'
+    //                     error('UT Failed, Please complete UTs')
+    //                 }
+    //           }
+    //         }
+    //     }
+    //   }
+    // }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
+
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $imagename:$BUILD_NUMBER"
+        sh "docker rmi $imagename:latest"
+
+      }
+    }
+    stage('Apply Kubernetes files') {
+      steps{
+
+
+
+            script {
+                    if (env.BRANCH_NAME == 'chita' ) {
+                        withKubeConfig([credentialsId: 'kube-zea-local']) {
+                          sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'
+                          sh 'chmod u+x ./kubectl'
+                          sh './kubectl --insecure-skip-tls-verify=true get pods -n $namespace'
+                          sh './kubectl --insecure-skip-tls-verify=true apply -f jenkins/kube-setup-jk-temp.yaml'
+                          sleep(time:30,unit:"SECONDS")
+                          sh './kubectl --insecure-skip-tls-verify=true get pods -n $namespace'
+                        }
+                    } else {
+                         sh 'cat jenkins/kube-setup-jk-temp.yaml'
+                         step([
+                                $class: 'KubernetesEngineBuilder',
+                                projectId: 'mogi-gc',
+                                clusterName: "$clusterName",
+                                location: 'asia-south1-a',
+                                manifestPattern: 'jenkins/kube-setup-jk-temp.yaml',
+                                credentialsId: 'jenkins-sa',
+                                verifyDeployments: false
+                              ])
+                          step([
+                                $class: 'KubernetesEngineBuilder',
+                                projectId: 'mogi-gc',
+                                clusterName: "$clusterName",
+                                location: 'asia-south1-a',
+                                manifestPattern: 'jenkins/kube-setup-jk-temp-vpa.yaml',
+                                credentialsId: 'jenkins-sa',
+                                verifyDeployments: false
+                              ])
+                    }
+            }
+
+
+
+      }
+
+    }
+  }
+  post {
+        always {
+            echo "This will always run ${currentBuild.currentResult} ${env.JOB_NAME}"
+            script {
+              def externalMethods = load 'jenkins/helper.groovy'
+              ltemp = externalMethods.sendTelegram( "$projectName Build ${currentBuild.currentResult} for $namespace env<br> check logs https://jci.mogiio.com/job/admin-portal/job/$BRANCH_NAME/$BUILD_NUMBER/console" )
+
+            }
+        }
+    }
+}

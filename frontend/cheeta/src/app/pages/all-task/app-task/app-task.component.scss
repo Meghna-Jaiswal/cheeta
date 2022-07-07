@@ -1,0 +1,20 @@
+@use '/src/variables';
+
+.card {
+    margin-bottom: 6px;
+    background: variables.$primary-colour;
+    color: variables.$text-colour;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+h5 {
+  font-family: variables.$font-readex;
+  font-size: 1rem;
+}
+
+h3 {
+  font-family: variables.$font-readex;
+  font-size: 1rem;
+  font-weight: 200;
+}

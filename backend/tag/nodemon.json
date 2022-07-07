@@ -1,0 +1,7 @@
+{
+    "env":{
+        "PORT": 3070,
+        "MONGO_DB_URL": "mongodb://localhost/cheeta-tags",
+        "JWT_BASE_URL": "https://dev.apis.mogiio.com/jwt/"
+    }
+}

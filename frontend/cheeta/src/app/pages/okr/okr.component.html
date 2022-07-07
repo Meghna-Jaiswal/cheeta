@@ -1,0 +1,43 @@
+<div class="main">
+  <!-- *ngIf="okr.length<0" -->
+
+
+  <div class="headingContainer">
+    <div class="head">Objective</div>
+    <div class="head">Actions</div>
+    <div class="head">Results</div>
+    <div style="visibility:hidden;"><mat-icon >delete</mat-icon></div>
+  </div>
+
+  <div class="noData" *ngIf="!okr.length">
+    <div class="noD">
+    <h1>No Data Available</h1>
+  </div>
+    <div style="visibility:hidden;"><mat-icon >delete</mat-icon></div>
+  </div>
+
+  <div *ngFor="let ok of okr" class="container">
+    <div class="coloum">
+      <div class="data">
+        {{ ok.objective }}
+      </div>
+    </div>
+    <div class="coloum">
+      <div class="data" *ngFor="let action of ok.actions">
+        <li>{{ action }}</li>
+      </div>
+    </div>
+    <div class="coloum">
+      <div class="data" *ngFor="let result of ok.results">
+        <li>{{ result }}</li>
+      </div>
+    </div>
+    <div>
+    <mat-icon (click)="openDelete(ok._id)">delete</mat-icon>
+  </div>
+  </div>
+  <div class="buttonDiv">
+
+    <button (click)="openOkr()">Add <mat-icon>add</mat-icon></button>
+  </div>
+</div>
